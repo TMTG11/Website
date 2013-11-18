@@ -42,6 +42,8 @@ body {
 	float: left;
 	margin-top: 40px;
 	margin-left: 40px;
+	width: 350px;
+	height: 20px;
 }
 
 li {
@@ -53,6 +55,7 @@ li {
 li a {
 	text-decoration: none;
 	color: #989898;
+	font-size: 12px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 15px;
@@ -60,12 +63,14 @@ li a {
 }
 
 li a:hover {
-	color: #363636;	
+	color: #363636;
+	font-size: 12px;
 }
 
 .current_active {
 	color: #363636;
 	font-weight: bold;
+	font-size: 12px;
 }
 
 #menu_button {
@@ -434,7 +439,7 @@ select::-ms-expand {
 
 #post_header_inlog {
 	width: 375px;
-	min-height: 400px;
+	min-height: 330px;
 	height: auto;
 	padding: 20px;
 	background-color: #FFF;
@@ -472,5 +477,6 @@ select::-ms-expand {
 }
 
 #post_header_inlog .button {
-	width: 375px;
+	width: 188px;
+	font-weight: 600;
 }
