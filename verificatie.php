@@ -1,5 +1,10 @@
 <?php
 /*
+TO DO :
+Mogelijk melding indien account al actief is
+Nieuw Logscript
+
+Changelog : 
 14-11-2013 Mies - Begin activatie script (checkt alleen of gebruiker bestaat)
 18-11-2013 Mies - Account word ook daadwerkelijk geactiveerd
 */
@@ -22,16 +27,17 @@ $opdracht2 = mysql_query("SELECT * FROM gebruiker WHERE Email='$email' AND Verif
 			$foutmeldingen[]="Gebruiker niet gevonden.";
 		}
 	}else{
-		$foutmeldingen[]="Opgefokt";
+		$foutmeldingen[]="Fout bij de MSQL Query";
 	}	
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>E-mail verificatie | Babyberichten.nl</title>
+	<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
 </head>
 <body>
-<?php 
+<?php
 	print_r($foutmeldingen);
 ?>
 </body>

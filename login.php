@@ -3,11 +3,17 @@ session_start();
 include("../connection.php");
 
 /*
+TO DO :
+Random salt in database.
+Opmaak.
+Nieuw Logscript
+Sessions
+
 Changelog :
 11-11-2013 Mies - Aanmaak pagina, aanmaak stijl, aanmaak tabellen, aanmaak divs
 12-11-2013 Mies begin PHP Scripts, Encryptie wachtwoorden, MYSQL queries enzo
 14-11-2013 Mies begin e-mail activatie (ZIE OOK VERIFICATIE.PHP)
-18-11-2013 Mies extra comments.
+18-11-2013 Mies extra comments, meer vriendelijke foutmeldingen, voorbereidingen uiteindelijke inlogpagina (foutmeldingen enzo). Titel, favicon. <head> ip <header> >.<
 */
 //afvangen login button
 if(isset($_POST['login'])){
@@ -18,7 +24,7 @@ if(isset($_POST['login'])){
 	
 	//Controle op lege velden - Mies 12-11-2013
 	if(empty($_POST['email'])){
-	$alert = $alert." Naam Leeg <br/>";
+		$alert = $alert." Naam Leeg <br/>";
 	}
 	if(empty($_POST['wachtwoord'])){
 		$alert = $alert." Wachtwoord Leeg <br/>";
@@ -38,12 +44,13 @@ if(isset($_POST['login'])){
 	if($opdracht){
 		$array=mysql_fetch_array($opdracht);
 		if(count($array)>1){
-			$foutmeldingen[]="Gebruiker gevonden";
+			$alert = $alert."Gebruiker gevonden<br/>";
 		}else{
-			$foutmeldingen[]="Gebruiker niet gevonden. Heeft U uw account al geactiveerd? Zie e-mail voor activatie link";
+			$alert = $alert."Gebruiker niet gevonden. Heeft U uw account al geactiveerd? Zie e-mail voor activatie link<br/>";
 		}
 	}else{
-		$foutmeldingen[]="Opgefokt";
+		$foutmeldingen[]="MySQL fout".mysql_error();
+		$alert = $alert."Er is hellaas iets fout gegaan in ons systeem. De fout is vastgelegd in de logs. <br/>";
 	}	
 }
 //afvangen registreer button
@@ -92,7 +99,7 @@ if(isset($_POST['registreer'])){
 		$opdracht = mysql_query("INSERT INTO gebruiker (Voornaam, Wachtwoord, Email, IsVerified, VerificatieCode) VALUES ('$voornaam', '$hashedPW', '$email','0','$activatiecode')");
 		//MySQL
 		if($opdracht){			
-			$foutmeldingen[]="INSERT GELUKT <3";
+			$foutmeldingen[]="Account Insert is gelukt";
 			$insertlog = " Succesvol geinsert".$opdracht;
 			//EMAIL			
 			//Headers, bericht.
@@ -111,10 +118,10 @@ if(isset($_POST['registreer'])){
 		}else{
 			$foutmeldingen[]=mysql_error();
 			$insertlog = " Fout bij insert ".mysql_error()." Query : ".$opdracht;
-			$alert = $alert." Er is helaas een fout opgetreden. Neem eventueel contact op met een Administrator <br/>";
+			$alert = $alert." Er is helaas een fout opgetreden. De fout is vastgelegd in onze logs.<br/>";
 		}
 	}else{
-		$insertlog = " Gebrekkige gegevens - geen insert ";
+		$alert = $alert." Gebrekkige gegevens. Vul AUB alle velden correct in en probeer het opnieuw.<br/>";
 	}
 }
 
@@ -137,7 +144,9 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 ?>
 <!DOCTYPE html>
 <html>
-<header>
+<head>
+<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+<title>Aanmelden en Inloggen | Babyberichten.nl</title>
 <!-- Tijdelijk style sheet - Mies 12-11-2013 -->
 <style>
 #inloglinks{
@@ -161,7 +170,7 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 
 
 </style>
-</header>
+</head>
 <body>
 <!-- BEGIN INHOUD -->
 <!--Begin Linker div - Mies 12-11-2013-->
@@ -206,17 +215,10 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 	</form><!--Einde RegistratieForumulier - Mies 12-11-2013-->
 </div><!--Einde Rechter div - Mies 12-11-2013-->
 
-Foutmeldingen : <br/><!-- DEVELOPMENT ONLY REMOVE BEFORE FLIGHT  - Mies 12-11-2013-->
+
 <?php
-	//WEGHALEN VOOR RELEASE - Mies 12-11-2013
-	print_r($foutmeldingen);
-	print("<br/>");
-	
-	print("<br/>");
-	print_r($array);
-	print("<br/>");
+	//Plekje voor vinden in de inhoud, hierin staan alle opmerkingen over wat er fout is gegaan bij het invullen. Mies 18-11-2013
 	print($alert);
-	
 ?>
 <!-- EINDE INHOUD -->
 </body>
