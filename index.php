@@ -16,6 +16,7 @@ Changelog :
 11-11-2013 - Maarten en Andre : Aanmaak pagina, aanmaak CSS, velen divs gemaakt.
 12-11-2013 - Maarten en Andre : Header & searchbalk.
 13-11-2013 - Maarten : Verder gegaan aan de vormgeving.
+18-11-2013 - David: Social Media script toegevoegd en email verzonden
 */
 
 ?>
@@ -35,7 +36,7 @@ Changelog :
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
-						<a href="#"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
+						<a href="index.php"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
 					</div> <!-- Einde logo -->
                     <!-- MENU ITEMS -->
 					<div id="menu_items">
@@ -73,11 +74,13 @@ Changelog :
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
-                                    <select name="cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="fiat">Fiat</option>
-                                        <option value="audi">Audi</option>
+                                    <select name="search">
+                                        <option value="voornaam">Voornaam</option>
+                                        <option value="achternaam">Achternaam</option>
+                                        <option value="roepnaam">Roepnaam</option>
+                                        <option value="geboortedatum">Geboortedatum</option>
+                                        <option value="geboorteplaats">Geboorteplaats</option>
+                                        <option value="geslacht">Geslacht</option>
                                     </select>
                                 </td>
                                 <td width="540"><input name="" type="text" placeholder="zoekopdracht"/></td>
@@ -174,10 +177,9 @@ Changelog :
             	<div class="wrapper">
 	            		<div class="right">
 	            			<p>
-								<!--David 12-11-13 !-->
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/facebook_white.png" width="40" /></a>&nbsp;
-                                <a href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/google_white.png" width="40"/></a>&nbsp;
-                                <a href="http://twitter.com/home?status=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/twitter_white.png" width="40"/></a>&nbsp;
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/facebook_white.png" width="40" /></a>
+                                <a href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/google_white.png" width="40"/></a>
+                                <a href="http://twitter.com/home?status=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/twitter_white.png" width="40"/></a>
 	            			</p>
 	            		</div>
 	            		<div>
@@ -191,3 +193,16 @@ Changelog :
         </div> <!-- Einde container -->
     </body>
 </html>
+
+<?php 
+//Moet nog gestest worden
+//Hier krijg je de javascript pop up als je een email verzend in het contactaanvraag formulier
+	if(isset($_GET["emailisverzonden"])){
+		?>
+			<script>
+                alert("Uw email is succesvol verzonden! Wij nemen zo snel mogelijk contact met u op! U bent nu terug op de Home pagina.");
+                window.location.href = "http://tmtg11.ict-lab.nl/website/index.php";
+            </script>
+		<?php
+	}
+?>
