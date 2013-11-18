@@ -23,12 +23,16 @@ Changelog :
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    		<title>Home | Babyberichten.nl</title>
+        
+        <link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
 		<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+        
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	</head> 
+    </head>
+    
     <body>
     	<div id="container"> 
     	  	<!-- MENU -->
@@ -92,9 +96,59 @@ Changelog :
             </div> <!-- Einde search -->
             
             <!-- KAARTJES -->
-            <div class="kaartjes nummer1">
+            <div class="kaartjesnummer1">
             	<div class="wrapper">
                 	<h4>Laatst geboren</h4>
+	            	<div id="post_header" class="right">
+                    	<p>
+                        	<h1>Maarten Paauw</h1>
+                            <h2>Hier komt de tekst over de baby.</h2>
+                            <h3>31-12-2013</h3>
+                    	</p>
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header -->
+                    
+                    <div id="post_header">
+                    	<p>
+                        	<h1>Maarten Paauw</h1>
+                            <h2>Hier komt de tekst over de baby.</h2>
+                            <h3>31-12-2013</h3>
+                    	</p>
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header -->
+                    
+            	</div> <!-- Einde wrapper -->
+            </div> <!-- Einde kaartjes -->
+            
+            <!-- KAARTJES -->
+            <div class="kaartjesnummer2">
+            	<div class="wrapper">
+                	<h4>Meeste comments</h4>
+	            	<div id="post_header" class="right">
+                    	<p>
+                        	<h1>Maarten Paauw</h1>
+                            <h2>Hier komt de tekst over de baby.</h2>
+                            <h3>31-12-2013</h3>
+                    	</p>
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header -->
+                    
+                    <div id="post_header">
+                    	<p>
+                        	<h1>Maarten Paauw</h1>
+                            <h2>Hier komt de tekst over de baby.</h2>
+                            <h3>31-12-2013</h3>
+                    	</p>
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header -->
+                    
+            	</div> <!-- Einde wrapper -->
+            </div> <!-- Einde kaartjes -->
+            
+            <!-- KAARTJES -->
+            <div class="kaartjesnummer3">
+            	<div class="wrapper">
+                	<h4>Laatste jongen &amp; Meisje</h4>
 	            	<div id="post_header" class="right">
                     	<p>
                         	<h1>Maarten Paauw</h1>

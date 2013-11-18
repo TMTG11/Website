@@ -10,7 +10,7 @@ Nieuw Logscript
 Sessions
 
 Changelog :
-11-11-2013 Mies - Aanmaak pagina, aanmaak stijl, aanmaak tabellen, aanmaak divs
+11-11-2013 Mies & Maarten - Aanmaak pagina, aanmaak stijl, aanmaak tabellen, aanmaak divs
 12-11-2013 Mies begin PHP Scripts, Encryptie wachtwoorden, MYSQL queries enzo
 14-11-2013 Mies begin e-mail activatie (ZIE OOK VERIFICATIE.PHP)
 18-11-2013 Mies extra comments, meer vriendelijke foutmeldingen, voorbereidingen uiteindelijke inlogpagina (foutmeldingen enzo). Titel, favicon. <head> ip <header> >.<
@@ -248,49 +248,78 @@ Begin Rechter div - Mies 12-11-2013
         <!-- KAARTJES -->
             <div class="kaartjes">
             	<div class="wrapper">
-	            	<div id="post_header" class="right">
+	            	<div id="post_header_inlog" class="right">
                     	<h1>Registreren</h1> 
-							<p>Text over Registreren op de site</p>
+							<h2>Text over Registreren op de site</h2>
 							<form name='registratieform' method='post'><!--Begin RegistratieForumulier - Mies 12-11-2013-->
 								<table id='tabel'>
 									<tr>
-										<td>Naam</td><td><input type='text'name='naam'/></td>
+										<td><input type='text'name='naam' placeholder="Voornaam"/></td>
 									</tr>
 									<tr>
-										<td>Wachtwoord</td><td><input type='password' name='wachtwoord'/></td>
+										<td><input type='password' name='wachtwoord' placeholder="Wachtwoord"/></td>
 									</tr>
 									<tr>
-										<td>E-mail Adres</td><td><input type='text' name='email'/></td>
+										<td><input type='text' name='email' placeholder="E-mail adres"/></td>
 									</tr>
 									<tr>
-										<td><td><input type='submit' name='registreer' value='Registreer'/></td>
+										<td><input type='submit' name='registreer' value='Registreer' class="button"/></td>
 									</tr>
 								</table>
 							</form><!--Einde RegistratieForumulier - Mies 12-11-2013-->
-                    	<a href="#" class="button right">Kaartje</a>
                     </div> <!-- Einde post_header -->
                     
-                    <div id="post_header">
+                    <div id="post_header_inlog">
                     	<form name='inlogform' method='post'>
 							<h1>Inloggen</h1> 
-							<p>Text over Inloggen op de site</p>
+							<h2>Text over Inloggen op de site</h2>
 							<table id='tabel'>
 								<tr><!--Begin InlogForumulier - Mies 12-11-2013-->
-									<td>Emailadres </td><td><input type='text' name='email'/></td>
+									<td><input type='text' name='email' placeholder="E-mail adres"/></td>
 								</tr>
 								<tr>
-									<td>Wachtwoord</td><td><input type='password' name='wachtwoord'/></td>
+									<td><input type='password' name='wachtwoord' placeholder="Wachtwoord"/></td>
 								</tr>
 								<tr>
-									<td><td><input type='submit' name='login' value='Login'/></td>
+									<td height="43">&nbsp;</td>
+								</tr>
+								<tr>
+									<td><input type='submit' name='login' value='Login' class="button"/></td>
 								</tr>
 							</table><!--Einde InlogForumulier- Mies 12-11-2013-->
 						</form>
-                    	<a href="#" class="button right">Kaartje</a>
                     </div> <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
             </div> <!-- Einde kaartjes -->
+            
+            <!-- CONTENT -->
+            <div class="content">
+            	<div class="wrapper">
+					<div class="padding"></div>
+						<div class="image right">
+							<img src="img/background_header.png"/>
+						</div> <!-- Einde image -->
+						<div class="blok">
+							<p>
+								<h1>Index pagina</h1>
+								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
+								</p>
+						</div> <!-- Einde blok -->
+							<hr class="line">
+						<div class="blok right">
+							<p>
+								<h1>Index pagina</h1>
+								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
+							</p>
+						</div> <!-- Einde blok -->
+					
+						<div class="image">
+							<img src="img/background_header.png"/>
+						</div> <!-- Einde image -->
+					<div class="padding"></div>	
+                </div> <!-- Einde wrapper -->
+            </div> <!-- Einde content -->
                
             <!-- FOOTER -->
             <div id="footer">

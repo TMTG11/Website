@@ -55,8 +55,8 @@ li a {
 	color: #989898;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 li a:hover {
@@ -114,7 +114,6 @@ li a:hover {
 	min-height: 160px;
 	height: auto;
 	margin-top: 50px;
-	margin-left: 50px;
 	padding: 20px;
 	background-color: #FFF;
 	border-left: 10px solid #89cff0;
@@ -369,15 +368,109 @@ select::-ms-expand {
 
 /*BABIES */
 
-.kaartjes .nummer1 {
-	background-color: #89cff0;
-	background-image: none; !important
+.kaartjesnummer1 {
+	width: 100%;
+	min-width: 1040px;
+	height: auto;
+	background-color: #c3ecff;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
-.kaartjes .wrapper h4 {
+.kaartjesnummer1 .wrapper h4 {
 	font-weight: 900;
-	color: #89cff0;
-	padding-bottom: 40px;
+	color: #fff;
 	font-size: 40px;
 	margin-left: 20px;
+}
+
+.kaartjesnummer2 {
+	width: 100%;
+	min-width: 1040px;
+	height: auto;
+	background-color: #fff;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.kaartjesnummer2 .wrapper h4 {
+	font-weight: 900;
+	color: #89cff0;
+	font-size: 40px;
+	margin-left: 20px;
+}
+
+.kaartjesnummer2 #post_header {
+	background-color: #3c3b3d;
+}
+
+.kaartjesnummer2 #post_header h2 {
+	color: #fff;
+}
+
+.kaartjesnummer3 {
+	width: 100%;
+	min-width: 1040px;
+	height: auto;
+	background-color: #3c3b3d;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.kaartjesnummer3 .wrapper h4 {
+	font-weight: 900;
+	color: #fff;
+	font-size: 40px;
+	margin-left: 20px;
+}
+
+.kaartjesnummer3 #post_header {
+	background-color: #fff;
+}
+
+.kaartjesnummer3 #post_header h2 {
+	color: #3c3b3d;
+}
+
+#post_header_inlog {
+	width: 375px;
+	min-height: 400px;
+	height: auto;
+	padding: 20px;
+	background-color: #FFF;
+	border-left: 10px solid #89cff0;
+}
+
+#post_header_inlog h1 {
+	font-weight: 900;
+	color: #89cff0;
+	padding-bottom: 20px;
+	font-size: 20px;
+}
+
+#post_header_inlog h2 {
+	font-weight: 300px;
+	color: #363636;
+	font-size: 14px;
+	padding-bottom: 20px;
+}
+
+.kaartjes .wrapper #post_header_inlog table tr {
+	border-collapse:collapse;
+	width: 100%;
+}
+
+.kaartjes .wrapper #post_header_inlog td {
+	padding-top: 20px;	
+}
+
+#post_header_inlog input {
+	padding: 10px;
+	font-family: 'Open Sans';
+	font-weight: 300;
+	width: 350px;
+}
+
+#post_header_inlog .button {
+	width: 375px;
 }
