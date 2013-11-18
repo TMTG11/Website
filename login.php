@@ -14,6 +14,7 @@ Changelog :
 12-11-2013 Mies begin PHP Scripts, Encryptie wachtwoorden, MYSQL queries enzo
 14-11-2013 Mies begin e-mail activatie (ZIE OOK VERIFICATIE.PHP)
 18-11-2013 Mies extra comments, meer vriendelijke foutmeldingen, voorbereidingen uiteindelijke inlogpagina (foutmeldingen enzo). Titel, favicon. <head> ip <header> >.<
+18-11-2013 Mies & Maarten - Stijl :D
 */
 //afvangen login button
 if(isset($_POST['login'])){
@@ -142,62 +143,15 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
-<title>Aanmelden en Inloggen | Babyberichten.nl</title>
-<!-- Tijdelijk style sheet - Mies 12-11-2013 -->
-<style>
-#inloglinks{
-	width:340px;
-	border-style:dotted;
-	float:left;
-	padding:30px;
-	padding-left:60px;
-}
-#inlogrechts{
-	width:340px;
-	border-style:dotted;
-	float:left;
-	padding:30px;
-	padding-left:60px;
-}
-#tabel{
-	border-style:solid;
-	border:1px;
-}
-
-
-</style>
-</head>
-<body>
 <!-- BEGIN INHOUD -->
-<!--Begin Linker div - Mies 12-11-2013-->
-<div id='inloglinks'>
-	<form name='inlogform' method='post'>
-		<h1>Inloggen</h1> 
-		<p>Text over Inloggen op de site</p>
-		<table id='tabel'>
-			<tr><!--Begin InlogForumulier - Mies 12-11-2013-->
-				<td>Emailadres </td><td><input type='text' name='email'/></td>
-			</tr>
-			<tr>
-				<td>Wachtwoord</td><td><input type='password' name='wachtwoord'/></td>
-			</tr>
-			<tr>
-				<td><td><input type='submit' name='login' value='Login'/></td>
-			</tr>
-		</table><!--Einde InlogForumulier- Mies 12-11-2013-->
-	</form>
-</div><!--Einde Linker div - Mies 12-11-2013-->
 
 
-<!--Begin Rechter div - Mies 12-11-2013-->
+<!--
+Begin Rechter div - Mies 12-11-2013
 <div id='inlogrechts'>
 	<h1>Registreren</h1> 
 	<p>Text over Registreren op de site</p>
-	<form name='registratieform' method='post'><!--Begin RegistratieForumulier - Mies 12-11-2013-->
+	<form name='registratieform' method='post'>Begin RegistratieForumulier - Mies 12-11-2013
 		<table id='tabel'>
 			<tr>
 				<td>Naam</td><td><input type='text'name='naam'/></td>
@@ -212,14 +166,150 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 				<td><td><input type='submit' name='registreer' value='Registreer'/></td>
 			</tr>
 		</table>
-	</form><!--Einde RegistratieForumulier - Mies 12-11-2013-->
-</div><!--Einde Rechter div - Mies 12-11-2013-->
+	</form>Einde RegistratieForumulier - Mies 12-11-2013
+</div>Einde Rechter div - Mies 12-11-2013
 
-
-<?php
-	//Plekje voor vinden in de inhoud, hierin staan alle opmerkingen over wat er fout is gegaan bij het invullen. Mies 18-11-2013
-	print($alert);
-?>
-<!-- EINDE INHOUD -->
-</body>
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Home | Babyberichten.nl</title>
+        
+        <link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
+		<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+        
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    </head>
+    
+    <body>
+    	<div id="container"> 
+    	  	<!-- MENU -->
+        	<div id="menu">
+				<div class="wrapper">
+                    <!-- LOGO -->
+					<div id="logo">
+						<a href="index.php"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
+					</div> <!-- Einde logo -->
+                    <!-- MENU ITEMS -->
+					<div id="menu_items">
+						<ul>
+							<li><a href="index.php">Home</a></li>
+							<li><a href="overons.php">Over ons</a></li>
+							<li><a href="babies.php">Babies</a></li>
+							<li><a href="login.php" class="current_active">Inloggen</a></li>
+						</ul>
+					</div> <!-- Einde menu_items -->		
+					<div id="menu_button">
+						<a href="#" class="button">registreren</a>
+					</div> <!-- Einde menu_button -->		
+				</div> <!-- Einde wrapper -->
+            </div> <!-- Einde menu -->
+           
+            <!-- HEADER -->
+            <div id="header">
+            	<div class="wrapper">
+                	<div id="post_header">
+                    	<p>
+                        	<h1>Maarten Paauw</h1>
+                            <h2>Hier komt de tekst over de baby.</h2>
+                            <h3>31-12-2013</h3>
+                    	</p>
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header --> 
+                </div> <!-- Einde wrapper -->
+            </div> <!-- Einde header -->
+            
+            <!-- SEARCH -->
+            <div id="search">
+            	<div class="wrapper">
+                	<form>
+                    	<table border="0" width="100%">
+                        	<tr>
+                            	<td width="250">
+                                    <select name="search">
+                                        <option value="voornaam">Voornaam</option>
+                                        <option value="achternaam">Achternaam</option>
+                                        <option value="roepnaam">Roepnaam</option>
+                                        <option value="geboortedatum">Geboortedatum</option>
+                                        <option value="geboorteplaats">Geboorteplaats</option>
+                                        <option value="geslacht">Geslacht</option>
+                                    </select>
+                                </td>
+                                <td width="540"><input name="" type="text" placeholder="zoekopdracht"/></td>
+                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div> <!-- Einde wrapper -->
+            </div> <!-- Einde search -->
+            
+        <!-- KAARTJES -->
+            <div class="kaartjes">
+            	<div class="wrapper">
+	            	<div id="post_header" class="right">
+                    	<h1>Registreren</h1> 
+							<p>Text over Registreren op de site</p>
+							<form name='registratieform' method='post'><!--Begin RegistratieForumulier - Mies 12-11-2013-->
+								<table id='tabel'>
+									<tr>
+										<td>Naam</td><td><input type='text'name='naam'/></td>
+									</tr>
+									<tr>
+										<td>Wachtwoord</td><td><input type='password' name='wachtwoord'/></td>
+									</tr>
+									<tr>
+										<td>E-mail Adres</td><td><input type='text' name='email'/></td>
+									</tr>
+									<tr>
+										<td><td><input type='submit' name='registreer' value='Registreer'/></td>
+									</tr>
+								</table>
+							</form><!--Einde RegistratieForumulier - Mies 12-11-2013-->
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header -->
+                    
+                    <div id="post_header">
+                    	<form name='inlogform' method='post'>
+							<h1>Inloggen</h1> 
+							<p>Text over Inloggen op de site</p>
+							<table id='tabel'>
+								<tr><!--Begin InlogForumulier - Mies 12-11-2013-->
+									<td>Emailadres </td><td><input type='text' name='email'/></td>
+								</tr>
+								<tr>
+									<td>Wachtwoord</td><td><input type='password' name='wachtwoord'/></td>
+								</tr>
+								<tr>
+									<td><td><input type='submit' name='login' value='Login'/></td>
+								</tr>
+							</table><!--Einde InlogForumulier- Mies 12-11-2013-->
+						</form>
+                    	<a href="#" class="button right">Kaartje</a>
+                    </div> <!-- Einde post_header -->
+                    
+            	</div> <!-- Einde wrapper -->
+            </div> <!-- Einde kaartjes -->
+               
+            <!-- FOOTER -->
+            <div id="footer">
+            	<div class="wrapper">
+	            		<div class="right">
+	            			<p>
+	            				<a href="https://www.facebook.com/sharer/sharer.php?u=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/facebook_white.png" width="40" /></a>
+                                <a href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/google_white.png" width="40"/></a>
+                                <a href="http://twitter.com/home?status=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/twitter_white.png" width="40"/></a>
+	            			</p>
+	            		</div>
+	            		<div>
+	            			<p>
+	            				&copy; TMTG11<br/>
+								Maarten Paauw, Mies van der Lippe, David de Wit &amp; Andre Dongen
+	            			</p>
+	            		</div>
+            	</div> <!-- Einde wrapper -->
+            </div> <!-- Einde footer -->
+        </div> <!-- Einde container -->
+    </body>
 </html>
