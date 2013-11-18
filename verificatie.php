@@ -8,6 +8,12 @@ $opdracht2 = mysql_query("SELECT * FROM gebruiker WHERE Email='$email' AND Verif
 		$array=mysql_fetch_array($opdracht2);
 		if(count($array)>1){
 			$foutmeldingen[]="Gebruiker gevonden";
+			$activatie = mysql_query("UPDATE gebruiker SET IsVerified = 1;");
+			if($activatie){
+				$foutmeldingen[]="Uw account is geactiveerd";
+			}else{
+				$foutmeldingen[]="Query Zuigt mofo";
+			}
 		}else{
 			$foutmeldingen[]="Gebruiker niet gevonden.";
 		}
