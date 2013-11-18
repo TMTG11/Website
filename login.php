@@ -25,6 +25,7 @@ if(isset($_POST['login'])){
 	//Inlog beveiligingen - Mies 12-11-2013
 	$password = mysql_real_escape_string($_POST['wachtwoord']);
 	$email    = mysql_real_escape_string($_POST['email']);
+	//Salt
 	$salt ="354t9r0hq12bjklrnfiljkdbnrgtiu34b";
 	$escapedPW= $password;
 	$saltedPW = $escapedPW . $salt;
