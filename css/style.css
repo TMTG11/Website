@@ -324,16 +324,6 @@ select::-ms-expand {
 	border-left: 10px solid #89cff0;
 }
 
-#meldingen {
-	min-height: 400px;
-	background-color: #FFF;
-	width: 980px;
-	margin: auto;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border-left: 10px solid #89cff0;
-}
-
 .kaartjes .wrapper {
 	padding: 0px;
 }
@@ -378,8 +368,8 @@ select::-ms-expand {
 
 #contact .button {
 	width: 30%;
-	float: right;
-}
+	font-weight: 600;
+	}
 
 /*BABIES */
 
@@ -489,4 +479,20 @@ select::-ms-expand {
 #post_header_inlog .button {
 	width: 188px;
 	font-weight: 600;
+}
+
+/*INLOG*/
+#meldingen {
+	min-height: 50px;
+	background-color: #FFF;
+	width: 980px;
+	margin: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-left: 10px solid #89cff0;
+}
+
+.kaartjes #meldingen .wrapper {
+	border: #F00 solid thin;
+	width: 940px;
 }
