@@ -17,6 +17,7 @@ Changelog :
 18-11-2013 Mies & Maarten - Stijl :D
 19-11-2013 Mies Meldingen
 19-11-2013 Maarten HTML en Stijl
+19-11-2013 Mies Kleur meldingen ding.
 
 Changelog voor stijl van pagina :
 
@@ -288,7 +289,7 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 									<td><input type='password' name='wachtwoord' placeholder="Wachtwoord"/></td>
 								</tr>
 								<tr>
-									<td height="43">&nbsp;</td>
+									<td height="67">&nbsp;</td>
 								</tr>
 								<tr>
 									<td><input type='submit' name='login' value='Login' class="button"/></td>
