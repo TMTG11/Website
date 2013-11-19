@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();
 //LOGGERSCIPT 7-11-2013 Mies
 include("whitelist.php");
@@ -9,13 +10,80 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 	file_put_contents("database/log.".$_SERVER['REMOTE_ADDR'].".php",$log, FILE_APPEND | LOCK_EX);
 }
 
-/*
+
 Changelog : 
-07-11-2013 - Mies : Logscript.
+07-11-2013 - Mies : Logscript
 11-11-2013 - Maarten en Andre : Aanmaak pagina, aanmaak CSS, velen divs gemaakt.
 12-11-2013 - Maarten en Andre : Header & searchbalk.
 13-11-2013 - Maarten : Verder gegaan aan de vormgeving.
+19-11-2013 - Mies kleine aanpassingen aan form
+19-11-2013 - Mies rewrite mailscript, formverificatie, e-mail en dergelijke
+19-11-2013 - David HTMLSpecialchars voor variablen e-mail. Compacter gemaakt door Mies (Gewoon $_POST[] ipv variabel met $_POST erin en dan HTMLSpecialchars)
+19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
 */
+if(isset($_POST["zoeken"])){
+	//Hier word het ip adres opgevraagt
+	$ipadres = $_SERVER["REMOTE_ADDR"];
+
+	//Hier word de huidige datum en tijd opgevraagt
+	$datum = date("D, d M Y H:i:s", $_SERVER['REQUEST_TIME']);
+
+	//Check van Velden - Mies
+	$magmailen = "true";
+	if(empty($_POST['email'])){
+		$alert = $alert." Email Leeg <br/>";
+		$magmailen = "false";
+	}
+	if(empty($_POST['telefoon'])){
+		$alert = $alert." Telefoon nummer Leeg <br/>";
+		$magmailen = "false";
+	}
+	if(empty($_POST['naam'])){
+		$alert = $alert."Naam Leeg <br/>";
+		$magmailen = "false";
+	}
+	if(empty($_POST['bericht'])){
+		$alert = $alert."Geen bericht ingevoerd <br/>";
+		$magmailen = "false";
+	}
+	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+			$alert = $alert." Foutief e-mail adres ingevoerd<br/>";
+			$magmailen = "false";
+	}
+	if($magmailen == "true"){
+		//Variabelen voor e-mail. -David
+		$naamvraagsteller = htmlspecialchars($_REQUEST['naam']);
+		$emailvraagsteller = htmlspecialchars($_REQUEST['email']);
+		$telefoonvraagsteller = htmlspecialchars($_REQUEST['telefoon']);
+		$berichtvraagsteller = htmlspecialchars($_REQUEST['bericht']);
+		//Hier word het ip adres opgevraagt
+		$ipadres = "Hier zou het IP adres kunnen komen";
+		//Hier word de huidige datum en tijd opgevraagt
+		$datum = date("D, d M Y H:i:s", $_SERVER['REQUEST_TIME']);
+		//Mail Templates, idee van mies om grote lappen tekst midden in code te voorkomen
+		require_once("scripts/mailtemplates.php");
+		//verzenden bericht naar administrator - Mies
+		$to = "administrator@ict-lab.nl";
+		$subject = "Contactformulier babyberichten.nl";	
+		$from = "autosent@babyberichten.nl";
+		$headers = "From:" . $from;
+		mail($to,$subject,$adminbericht,$headers);
+		//verzenden bericht naar klant - Mies
+		$to = $emailvraagsteller;
+		$subject = "Uw Contact Aanvraag Babyberichten.nl";
+		$from = "contact@babyberichten.nl";
+		$headers = "From:" . $from;
+		mail($to,$subject,$klantmail,$headers);
+		$alert="Uw bericht is verzonden. <br/>We nemen binnenkort contact met u op";
+	}
+	//Scripts die kunnen worden uitgevoerd. - mies
+	$scripts = "window.onload = function() {
+	  window.scrollTo(0,document.body.scrollHeight);
+	};";
+}
+if(!isset($alert)){
+	$alert="Heeft u een vraag?<br/> Vul dan het onderstaande contactformulier in en wij nemen binnen 24 uur contact met u op.";
+}
 
 ?>
 <!DOCTYPE html>
@@ -29,6 +97,8 @@ Changelog :
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+		
+	</head>
     </head>
     
     <body>
@@ -127,20 +197,20 @@ Changelog :
             		<div class="wrapper">
                     	<p>
                         	<h1>Contactformulier</h1>
-                            <h2>Heeft u een vraag?<br/> Vul dan het onderstaande contactformulier in en wij nemen binnen 24 uur contact met u op.</h2>
-                            <form method="post" action="contact_verwerk.php">
+                            <h2><?php print($alert);?></h2>
+                            <form method="post" action="overons.php">
                             	<table>
                                 	<tr>
-                                        <td><input name="naam" type="text" placeholder="Voor- & Achternaam"/></td>
+                                        <td><input name="naam" type="text" placeholder="Voor- & Achternaam" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="email" type="text" placeholder="E-mail adres"/></td>
+                                        <td><input name="email" type="text" placeholder="E-mail adres" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="telefoon" type="text" placeholder="Telefoonnummer"/></td>
+                                        <td><input name="telefoon" type="text" placeholder="Telefoonnummer" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750" placeholder="Uw bericht..."></textarea></td>
+                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750" required placeholder="Uw bericht..."></textarea></td>
                                     </tr>
                                     <tr>
                                         <td><input name="zoeken" type="submit" value="Verzenden" class="button" /></td>
@@ -171,51 +241,11 @@ Changelog :
             	</div> <!-- Einde wrapper -->
             </div> <!-- Einde footer -->
         </div> <!-- Einde container -->
+		<script>
+			<?php
+			//Defineer scripts in de PHP code bovenaan.
+			print($scripts);
+			?>
+		</script>
     </body>
 </html>
-<?php 
-//David de Wit 19-11-2013
-
-//Javascript meldingen voor als er een veld niet is ingevuld in het contactformulier
-
-//Naam niet ingevuld
-	if(isset($_GET["naamisleeg"])){
-		?>
-			<script>
-                alert("Vul alstublieft ook het veld: Naam ,in!");
-                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
-            </script>
-		<?php
-	}
-	
-//Email niet ingevuld
-	if(isset($_GET["emailisleeg"])){
-		?>
-			<script>
-                alert("Vul alstublieft ook het veld: Email ,in!");
-                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
-            </script>
-		<?php
-	}	
-	
-//Telefoon niet ingevuld
-	if(isset($_GET["telefoonisleeg"])){
-		?>
-			<script>
-                alert("Vul alstublieft ook het veld: Telefoon ,in!");
-                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
-            </script>
-		<?php
-	}	
-	
-//Bericht niet ingevuld
-	if(isset($_GET["berichtisleeg"])){
-		?>
-			<script>
-                alert("Vul alstublieft ook het veld: Bericht ,in!");
-                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
-            </script>
-		<?php
-	}			
-	
-?>

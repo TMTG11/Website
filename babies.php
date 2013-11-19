@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();
 //LOGGERSCIPT 7-11-2013 Mies
 include("whitelist.php");
@@ -8,13 +9,14 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 }else{
 	file_put_contents("database/log.".$_SERVER['REMOTE_ADDR'].".php",$log, FILE_APPEND | LOCK_EX);
 }
-/*
+
 Changelog : 
 07-11-2013 - Mies : Logscript.
 11-11-2013 - Maarten en Andre : Aanmaak pagina, aanmaak CSS, velen divs gemaakt.
 12-11-2013 - Maarten en Andre : Header & searchbalk.
 13-11-2013 - Maarten : Verder gegaan aan de vormgeving.
 18-11-2013 - David: Social Media script toegevoegd en email verzonden
+19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
 */
 
 ?>

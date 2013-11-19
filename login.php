@@ -1,6 +1,6 @@
 <?php
-session_start();
-include("../connection.php");
+//session_start();
+//include("../connection.php");
 
 /*
 TO DO :
@@ -18,6 +18,7 @@ Changelog :
 19-11-2013 Mies Meldingen
 19-11-2013 Maarten HTML en Stijl
 19-11-2013 Mies Kleur meldingen ding.
+19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
 
 Changelog voor stijl van pagina :
 
@@ -149,6 +150,7 @@ if(!isset($alert)){
 }
 
 //LOGGERSCIPT 7-11-2013 Mies
+/*
 include("whitelist.php");
 if(isset($_POST['login'])){
 	$gegevens="Poging tot login - Naam : ".$_POST['naam']." Wachtwoord : ".$hashedPW;
@@ -162,7 +164,7 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 }else{
 	file_put_contents("database/log.".$_SERVER['REMOTE_ADDR'].".php",$log, FILE_APPEND | LOCK_EX);
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
