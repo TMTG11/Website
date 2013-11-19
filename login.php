@@ -1,6 +1,6 @@
 <?php
-//session_start();
-//include("../connection.php");
+session_start();
+include("../connection.php");
 
 /*
 TO DO :
@@ -254,8 +254,8 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
                 	</div> <!-- Einde meldingen -->
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde kaartjes -->
-        
-		<!-- KAARTJES -->
+                   
+			<!-- KAARTJES -->
             <div class="kaartjes">
             	<div class="wrapper">
 	            	<div id="post_header_inlog" class="right">
@@ -264,13 +264,13 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 							<form name='registratieform' method='post'><!--Begin RegistratieForumulier - Mies 12-11-2013-->
 								<table id='tabel'>
 									<tr>
-										<td><input type='text'name='naam' placeholder="Voornaam"/></td>
+										<td><input type='text'name='naam' placeholder="Voornaam" required /></td>
 									</tr>
 									<tr>
-										<td><input type='password' name='wachtwoord' placeholder="Wachtwoord"/></td>
+										<td><input type='password' name='wachtwoord' placeholder="Wachtwoord" required /></td>
 									</tr>
 									<tr>
-										<td><input type='text' name='email' placeholder="E-mail adres"/></td>
+										<td><input type='text' name='email' placeholder="E-mail adres" required /></td>
 									</tr>
 									<tr>
 										<td><input type='submit' name='registreer' value='Registreer' class="button"/></td>
@@ -285,13 +285,10 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 							<h2>Text over Inloggen op de site</h2>
 							<table id='tabel'>
 								<tr><!--Begin InlogForumulier - Mies 12-11-2013-->
-									<td><input type='text' name='email' placeholder="E-mail adres"/></td>
+									<td><input type='text' name='email' placeholder="E-mail adres" required /></td>
 								</tr>
 								<tr>
-									<td><input type='password' name='wachtwoord' placeholder="Wachtwoord"/></td>
-								</tr>
-								<tr>
-									<td height="67">&nbsp;</td>
+									<td><input type='password' name='wachtwoord' placeholder="Wachtwoord" required /></td>
 								</tr>
 								<tr>
 									<td><input type='submit' name='login' value='Login' class="button"/></td>
