@@ -491,6 +491,7 @@ select::-ms-expand {
         font-weight: 300px;
         color: #363636;
         font-size: 14px;
+		line-height: 20px;
 }
 
 .positief {
