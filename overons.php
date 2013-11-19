@@ -140,7 +140,7 @@ Changelog :
                                         <td><input name="telefoon" type="text" placeholder="Telefoonnummer"/></td>
                                     </tr>
                                     <tr>
-                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750">Uw bericht.</textarea></td>
+                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750" placeholder="Uw bericht..."></textarea></td>
                                     </tr>
                                     <tr>
                                         <td><input name="zoeken" type="submit" value="Verzenden" class="button" /></td>
@@ -173,3 +173,29 @@ Changelog :
         </div> <!-- Einde container -->
     </body>
 </html>
+<?php 
+//David de Wit 19-11-2013
+
+//Javascript meldingen voor als er een veld niet is ingevuld in het contactformulier
+
+//Naam niet ingevuld
+	if(isset($_GET["naamisleeg"])){
+		?>
+			<script>
+                alert("Vul alstublieft ook het veld: naam in");
+                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
+            </script>
+		<?php
+	}
+/*	
+//Naam niet ingevuld
+	if(isset($_GET["naamisleeg"])){
+		?>
+			<script>
+                alert("Vul alstublieft ook het veld: naam in");
+                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
+            </script>
+		<?php
+	}*/	
+	
+?>
