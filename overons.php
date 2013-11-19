@@ -182,20 +182,40 @@ Changelog :
 	if(isset($_GET["naamisleeg"])){
 		?>
 			<script>
-                alert("Vul alstublieft ook het veld: naam in");
+                alert("Vul alstublieft ook het veld: Naam ,in!");
                 window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
             </script>
 		<?php
 	}
-/*	
-//Naam niet ingevuld
-	if(isset($_GET["naamisleeg"])){
+	
+//Email niet ingevuld
+	if(isset($_GET["emailisleeg"])){
 		?>
 			<script>
-                alert("Vul alstublieft ook het veld: naam in");
+                alert("Vul alstublieft ook het veld: Email ,in!");
                 window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
             </script>
 		<?php
-	}*/	
+	}	
+	
+//Telefoon niet ingevuld
+	if(isset($_GET["telefoonisleeg"])){
+		?>
+			<script>
+                alert("Vul alstublieft ook het veld: Telefoon ,in!");
+                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
+            </script>
+		<?php
+	}	
+	
+//Bericht niet ingevuld
+	if(isset($_GET["berichtisleeg"])){
+		?>
+			<script>
+                alert("Vul alstublieft ook het veld: Bericht ,in!");
+                window.location.href = "http://tmtg11.ict-lab.nl/website/overons.php";
+            </script>
+		<?php
+	}			
 	
 ?>

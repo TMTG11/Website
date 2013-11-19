@@ -61,9 +61,6 @@ Changelog :
                 <label for="button-2"></label>
                 <input type="radio" id="button-3" name="controls"/>
                 <label for="button-3"></label>
-                <label for="button-1" class="arrows" id="arrow-1">></label>
-                <label for="button-2" class="arrows" id="arrow-2">></label>
-                <label for="button-3" class="arrows" id="arrow-3">></label>
             </div><!-- end slideshow wrap-->
         	<div id="img"><!--begin img-->
                 <ul>

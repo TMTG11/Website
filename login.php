@@ -31,9 +31,11 @@ if(isset($_POST['login'])){
 	//Controle op lege velden - Mies 12-11-2013
 	if(empty($_POST['email'])){
 		$alert = $alert." Naam Leeg <br/>";
+		$class = "negatief";
 	}
 	if(empty($_POST['wachtwoord'])){
 		$alert = $alert." Wachtwoord Leeg <br/>";
+		$class = "negatief";
 	}
 	
 	//Inlog beveiligingen - Mies 12-11-2013
@@ -51,8 +53,10 @@ if(isset($_POST['login'])){
 		$array=mysql_fetch_array($opdracht);
 		if(count($array)>1){
 			$alert = $alert."Gebruiker gevonden<br/>";
+			$class = "positief";
 		}else{
 			$alert = $alert."Gebruiker niet gevonden. Heeft U uw account al geactiveerd? Zie e-mail voor activatie link<br/>";
+			$class = "negatief";
 		}
 	}else{
 		$foutmeldingen[]="MySQL fout".mysql_error();
@@ -71,16 +75,19 @@ if(isset($_POST['registreer'])){
 	$maginserten = "true";
 	if(empty($_POST['email'])){
 		$alert = $alert." Email Leeg <br/>";
+		$class = "negatief";
 		$maginserten = "false";
 	}
 	if(empty($_POST['wachtwoord'])){
 		$alert = $alert." Wachtwoord Leeg <br/>";
 		$maginserten = "false";
+		$class = "negatief";
 	}
 	//EMAIL CHECK - Mies 14-11-2013
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 		$alert = $alert." Foutief e-mail adres ingevoerd<br/>";
 		$maginserten = "false";
+		$class = "negatief";
 	}
 
 	//Registratie beveiligingen - Mies 12-11-2013
@@ -96,6 +103,7 @@ if(isset($_POST['registreer'])){
 	$checkemail = mysql_fetch_array($gebruikercheck);
 	if(count($checkemail) > 1){
 		$maginserten = "false";
+		$class = "negatief";
 		$alert = $alert." Er bestaat al een gebruiker met dit E-mail adres <br/>";
 	}
 	//Insert - Mies 12-11-2013
@@ -121,18 +129,22 @@ if(isset($_POST['registreer'])){
 			//versturen mail
 			mail('tmtg11@ict-lab.nl', $subject, $message, implode("\r\n", $headers));
 			$alert = $alert." U bent succesvol toegevoegd aan onze database. Een e-mail is verstuurd naar : ".$email.". Om uw account te gebruiken verzoeken wij U om op de in uw link te klikken<br/>";
+			$class = "positief";
 		}else{
 			$foutmeldingen[]=mysql_error();
 			$insertlog = " Fout bij insert ".mysql_error()." Query : ".$opdracht;
 			$alert = $alert." Er is helaas een fout opgetreden. De fout is vastgelegd in onze logs.<br/>";
+			$class = "negatief";
 		}
 	}else{
 		$alert = $alert." Gebrekkige gegevens. Vul AUB alle velden correct in en probeer het opnieuw.<br/>";
+		$class = "negatief";
 	}
 }
 //ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
 if(!isset($alert)){
 	$alert = "Welkom op de inlogpagina van Babyberichten.nl Hier kunt u inloggen en registeren.";
+	$class = "normaal";
 }
 
 //LOGGERSCIPT 7-11-2013 Mies
@@ -230,7 +242,7 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 			<!-- MELDINGEN -->
 			<div class="kaartjes padding_bottom">
            		<div class="wrapper">
-            		<div id="meldingen" class="negatief">
+            		<div id="meldingen" class="<?php print($class);?>">
                     	<h2>
 							<?php
                                 print($alert);

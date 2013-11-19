@@ -88,11 +88,17 @@ if (empty($naamvraagsteller))
 }
 else
 {
-	echo "MELDING";
+	$naamveldleeg = 1;
 }
+
 if (empty($emailvraagsteller))
 {
   header('Location: http://tmtg11.ict-lab.nl/website/overons.php?emailisleeg=true');
+}
+
+else
+{
+	$emailveldleeg = 1;	
 }
 
 if (empty($telefoonvraagsteller))
@@ -100,13 +106,23 @@ if (empty($telefoonvraagsteller))
   header('Location: http://tmtg11.ict-lab.nl/website/overons.php?telefoonisleeg=true');
 }
 
+else
+{
+	$telefoonveldleeg = 1;	
+}
+
 if (empty($berichtvraagsteller))
 {
   header('Location: http://tmtg11.ict-lab.nl/website/overons.php?berichtisleeg=true');
 }
+
 else
-//Dit stuurt je terug naar de index:
 {
+	$berichtveldleeg = 1;	
+}
+
+//Dit stuurt je terug naar de index als alle velden goed zijn:
+if($naamveldleeg == 1 and $$emailveldleeg == 1 and $telefoonveldleeg == 1 and $berichtveldleeg == 1){
 header('Location: http://tmtg11.ict-lab.nl/website/index.php?emailisverzonden=true');
 }
 ?>
@@ -119,7 +135,6 @@ header('Location: http://tmtg11.ict-lab.nl/website/index.php?emailisverzonden=tr
 </head>
 
 <body>
-
 </body>
 </html>
 <?php
