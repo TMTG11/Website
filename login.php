@@ -10,11 +10,16 @@ Nieuw Logscript
 Sessions
 
 Changelog :
-11-11-2013 Mies & Maarten - Aanmaak pagina, aanmaak stijl, aanmaak tabellen, aanmaak divs
+11-11-2013 Mies Aanmaak pagina, aanmaak tabellen
 12-11-2013 Mies begin PHP Scripts, Encryptie wachtwoorden, MYSQL queries enzo
 14-11-2013 Mies begin e-mail activatie (ZIE OOK VERIFICATIE.PHP)
 18-11-2013 Mies extra comments, meer vriendelijke foutmeldingen, voorbereidingen uiteindelijke inlogpagina (foutmeldingen enzo). Titel, favicon. <head> ip <header> >.<
 18-11-2013 Mies & Maarten - Stijl :D
+19-11-2013 Mies Meldingen
+19-11-2013 Maarten HTML en Stijl
+
+Changelog voor stijl van pagina :
+
 */
 //afvangen login button
 if(isset($_POST['login'])){
@@ -125,7 +130,10 @@ if(isset($_POST['registreer'])){
 		$alert = $alert." Gebrekkige gegevens. Vul AUB alle velden correct in en probeer het opnieuw.<br/>";
 	}
 }
-
+//ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
+if(!isset($alert)){
+	$alert = "Welkom op de inlogpagina van Babyberichten.nl Hier kunt u inloggen en registeren.";
+}
 
 //LOGGERSCIPT 7-11-2013 Mies
 include("whitelist.php");
@@ -143,33 +151,7 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 }
 
 ?>
-<!-- BEGIN INHOUD -->
 
-
-<!--
-Begin Rechter div - Mies 12-11-2013
-<div id='inlogrechts'>
-	<h1>Registreren</h1> 
-	<p>Text over Registreren op de site</p>
-	<form name='registratieform' method='post'>Begin RegistratieForumulier - Mies 12-11-2013
-		<table id='tabel'>
-			<tr>
-				<td>Naam</td><td><input type='text'name='naam'/></td>
-			</tr>
-			<tr>
-				<td>Wachtwoord</td><td><input type='password' name='wachtwoord'/></td>
-			</tr>
-			<tr>
-				<td>E-mail Adres</td><td><input type='text' name='email'/></td>
-			</tr>
-			<tr>
-				<td><td><input type='submit' name='registreer' value='Registreer'/></td>
-			</tr>
-		</table>
-	</form>Einde RegistratieForumulier - Mies 12-11-2013
-</div>Einde Rechter div - Mies 12-11-2013
-
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -244,8 +226,19 @@ Begin Rechter div - Mies 12-11-2013
                     </form>
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde search -->
-            
-        <!-- KAARTJES -->
+			
+			<!-- MELDINGEN -->
+			<div class="kaartjes">
+            	<div id="meldingen">
+            		<div class="wrapper">
+                    	<?php
+							print($alert);
+						?>
+                	</div> <!-- Einde wrapper -->
+                </div> <!-- Einde contact -->
+            </div> <!-- Einde Meldingen -->
+        
+		<!-- KAARTJES -->
             <div class="kaartjes">
             	<div class="wrapper">
 	            	<div id="post_header_inlog" class="right">
