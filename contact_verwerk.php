@@ -1,19 +1,3 @@
-
-<?php
-//Lege velkden verzenden nog
-//Telefoonnummer word nog niet gecontroleerd en email
-if (!empty($_POST)){
-	if(!empty($_POST["naam"]) && ($_POST["email"]) && ($_POST["telefoon"]) && ($_POST["bericht"])){
-	$naamvraagsteller = mysql_real_escape_string ($_POST["naam"]);
-	$email = mysql_real_escape_string ($_POST["email"]);
-	$telefoon = mysql_real_escape_string ($_POST["telefoon"]);
-	$bericht = mysql_real_escape_string ($_POST["bericht"]);
-	}
-
-}
-
-?>
-
 <?php
 //David de Wit 18-11-2013
 
@@ -38,9 +22,6 @@ $ipadres = $_SERVER["REMOTE_ADDR"];
 $datum = date("D, d M Y H:i:s", $_SERVER['REQUEST_TIME']);
 
 
-
-
-
 //Dit is de mail die verstuurt word als ontvangstbevestiging naar de persoon die de vraag heeft opgestuurt.
 
 $to = $emailvraagsteller;
@@ -57,7 +38,7 @@ $from = "contact@babyberichten.nl";
 $headers = "From:" . $from;
 mail($to,$subject,$message,$headers);
 
-
+//Einde ontvangstbevestiging mail
 
 
 
@@ -96,10 +77,38 @@ $from = "autosent@babyberichten.nl";
 $headers = "From:" . $from;
 mail($to,$subject,$message,$headers);
 
+//Einde beheerders mail 
+
+
+
+//Dit controleerd of de velden leeg zijn die worden opgestuurt, zo niet stuurt deze je terug met een passende melding
+if (empty($naamvraagsteller))
+{
+  header('Location: http://tmtg11.ict-lab.nl/website/overons.php?naamisleeg=true');
+}
+else
+{
+	echo "MELDING";
+}
+if (empty($emailvraagsteller))
+{
+  header('Location: http://tmtg11.ict-lab.nl/website/overons.php?emailisleeg=true');
+}
+
+if (empty($telefoonvraagsteller))
+{
+  header('Location: http://tmtg11.ict-lab.nl/website/overons.php?telefoonisleeg=true');
+}
+
+if (empty($berichtvraagsteller))
+{
+  header('Location: http://tmtg11.ict-lab.nl/website/overons.php?berichtisleeg=true');
+}
+else
 //Dit stuurt je terug naar de index:
-
-header('Location: http://tmtg11.ict-lab.nl/website?emailisverzonden=true');
-
+{
+header('Location: http://tmtg11.ict-lab.nl/website/index.php?emailisverzonden=true');
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -113,3 +122,6 @@ header('Location: http://tmtg11.ict-lab.nl/website?emailisverzonden=true');
 
 </body>
 </html>
+<?php
+
+?>
