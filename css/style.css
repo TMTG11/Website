@@ -483,16 +483,29 @@ select::-ms-expand {
 
 /*INLOG*/
 #meldingen {
-	min-height: 50px;
 	background-color: #FFF;
-	width: 980px;
 	margin: auto;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border-left: 10px solid #89cff0;
+	padding: 20px;
 }
 
-.kaartjes #meldingen .wrapper {
-	border: #F00 solid thin;
+#meldingen h2 {
+	font-weight: 300px;
+	color: #363636;
+	font-size: 14px;
+}
+
+.positief {
+	border-left: 10px solid #0F0;
+}
+
+.negatief {
+	border-left: 10px solid #F00;
+}
+
+.kaartjes .wrapper {
 	width: 940px;
+}
+
+.padding_bottom {
+	padding-bottom: 0px !important;
 }

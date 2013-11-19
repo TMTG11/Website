@@ -228,15 +228,17 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
             </div> <!-- Einde search -->
 			
 			<!-- MELDINGEN -->
-			<div class="kaartjes">
-            	<div id="meldingen">
-            		<div class="wrapper">
-                    	<?php
-							print($alert);
-						?>
-                	</div> <!-- Einde wrapper -->
-                </div> <!-- Einde contact -->
-            </div> <!-- Einde Meldingen -->
+			<div class="kaartjes padding_bottom">
+           		<div class="wrapper">
+            		<div id="meldingen" class="negatief">
+                    	<h2>
+							<?php
+                                print($alert);
+                            ?>
+                        </h2>
+                	</div> <!-- Einde meldingen -->
+                </div> <!-- Einde wrapper -->
+            </div> <!-- Einde kaartjes -->
         
 		<!-- KAARTJES -->
             <div class="kaartjes">
