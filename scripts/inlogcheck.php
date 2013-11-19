@@ -23,4 +23,14 @@
 			$tekst = "Registreren";
 		}
 	}
+	
+	function logo {
+		if($jongen) {
+			$link = "http://www.google.nl/?true=true"; 
+		} else if($meisje) {
+			$link = "http://www.google.nl/?true=true";
+		} else {
+			$link = "http://www.google.nl/?true=true";
+		}
+	}
 ?>
