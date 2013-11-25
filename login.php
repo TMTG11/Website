@@ -1,6 +1,7 @@
 <?php
-session_start();
-include("../connection.php");
+	session_start();
+	include("../connection.php");
+	require_once('scripts/inlogcheck.php');
 
 /*
 TO DO :
@@ -19,10 +20,17 @@ Changelog :
 19-11-2013 Maarten HTML en Stijl
 19-11-2013 Mies Kleur meldingen ding.
 19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
+25-11-2013 Mies Sessies. Doorverwijzing naar Account.php
+25-11-2013 Maarten Buttons 
 
 Changelog voor stijl van pagina :
 
 */
+//SessieCheck
+if($_SESSION["ingelogd"]){
+	header('Location: http://tmtg11.ict-lab.nl/website/account.php');
+}
+
 //afvangen login button
 if(isset($_POST['login'])){
 	//Dev only - Mies 12-11-2013 
@@ -56,9 +64,18 @@ if(isset($_POST['login'])){
 		if(count($array)>1){
 			$alert = $alert."Gebruiker gevonden<br/>";
 			$class = "positief";
+			$_SESSION["ingelogd"] = true;
+			unset($array["VerificatieCode"]);
+			unset($array["IsAdmin"]);
+			unset($array["Wachtwoord"]);
+			unset($array["13"]);
+			unset($array["1"]);
+			$_SESSION["userinfo"]=$array;
+			header('Location: http://tmtg11.ict-lab.nl/website/account.php');
 		}else{
 			$alert = $alert."Gebruiker niet gevonden. Heeft U uw account al geactiveerd? Zie e-mail voor activatie link<br/>";
 			$class = "negatief";
+			$_SESSION["ingelogd"] = false;
 		}
 	}else{
 		$foutmeldingen[]="MySQL fout".mysql_error();
@@ -187,7 +204,7 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
-						<a href="index.php"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
+						<a href="index.php"><img src="<?php print(logo("link")); ?>" width="256" height="63" alt="Logo" /></a>
 					</div> <!-- Einde logo -->
                     <!-- MENU ITEMS -->
 					<div id="menu_items">
@@ -195,11 +212,11 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
 							<li><a href="index.php">Home</a></li>
 							<li><a href="overons.php">Over ons</a></li>
 							<li><a href="babies.php">Babies</a></li>
-							<li><a href="login.php" class="current_active">Inloggen</a></li>
+							<li><a href="<?php print(inloggen_button("link")); ?>" class="current_active"><?php print(inloggen_button("tekst")); ?></a></li>
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
-						<a href="#" class="button">registreren</a>
+						<a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a>
 					</div> <!-- Einde menu_button -->		
 				</div> <!-- Einde wrapper -->
             </div> <!-- Einde menu -->
