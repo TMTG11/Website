@@ -1,4 +1,7 @@
 <?php
+	session_start();
+	require_once('scripts/inlogcheck.php');
+	require_once('scripts/kaartjes.php');
 /*
 session_start();
 //LOGGERSCIPT 7-11-2013 Mies
@@ -27,8 +30,8 @@ Changelog :
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    		<title>Home | Babyberichten.nl</title>
         
-        <link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
-		<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+        <link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
+		<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -41,7 +44,7 @@ Changelog :
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
-						<a href="index.php"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
+						<a href="index.php"><img src="<?php print(logo("link")); ?>" width="256" height="63" alt="Logo" /></a>
 					</div> <!-- Einde logo -->
                     <!-- MENU ITEMS -->
 					<div id="menu_items">
@@ -49,11 +52,11 @@ Changelog :
 							<li><a href="index.php" class="current_active">Home</a></li>
 							<li><a href="overons.php">Over ons</a></li>
 							<li><a href="babies.php">Babies</a></li>
-							<li><a href="login.php">Inloggen</a></li>
+							<li><a href="<?php print(inloggen_button("link")); ?>"><?php print(inloggen_button("tekst")); ?></a></li>
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
-						<a href="#" class="button">registreren</a>
+						<a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a>
 					</div> <!-- Einde menu_button -->		
 				</div> <!-- Einde wrapper -->
             </div> <!-- Einde menu -->
@@ -62,12 +65,13 @@ Changelog :
             <div id="header">
             	<div class="wrapper">
                 	<div id="post_header">
+						<?php $array = laatste_kaartje(); ?>
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1><?php print($array["naam"]); ?></h1>
+                            <h2><?php print($array["tekst"]); ?></h2>
+                            <h3><?php print($array["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->
@@ -198,16 +202,3 @@ Changelog :
         </div> <!-- Einde container -->
     </body>
 </html>
-
-<?php 
-//Moet nog gestest worden
-//Hier krijg je de javascript pop up als je een email verzend in het contactaanvraag formulier
-	if(isset($_GET["emailisverzonden"])){
-		?>
-			<script>
-                alert("Uw email is succesvol verzonden! Wij nemen zo snel mogelijk contact met u op! U bent nu terug op de Home pagina.");
-                window.location.href = "http://tmtg11.ict-lab.nl/website/index.php";
-            </script>
-		<?php
-	}
-?>
