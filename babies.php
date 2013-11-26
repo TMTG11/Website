@@ -1,4 +1,7 @@
 <?php
+	session_start();
+	require_once('scripts/inlogcheck.php');
+	require_once('scripts/kaartjes.php');
 /*
 session_start();
 //LOGGERSCIPT 7-11-2013 Mies
@@ -17,6 +20,7 @@ Changelog :
 13-11-2013 - Maarten : Verder gegaan aan de vormgeving.
 18-11-2013 - David: Social Media script toegevoegd en email verzonden
 19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
+26-11-2013 David: Laatste Jongens en meisje laten zien
 */
 
 ?>
@@ -40,7 +44,7 @@ Changelog :
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
-						<a href="index.php"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
+						<a href="index.php"><img src="<?php print(logo("link")); ?>" width="256" height="63" alt="Logo" /></a>
 					</div> <!-- Einde logo -->
                     <!-- MENU ITEMS -->
 					<div id="menu_items">
@@ -48,11 +52,11 @@ Changelog :
 							<li><a href="index.php">Home</a></li>
 							<li><a href="overons.php">Over ons</a></li>
 							<li><a href="babies.php" class="current_active">Babies</a></li>
-							<li><a href="login.php">Inloggen</a></li>
+							<li><a href="<?php print(inloggen_button("link")); ?>"><?php print(inloggen_button("tekst")); ?></a></li>
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
-						<a href="#" class="button">registreren</a>
+						<a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a>
 					</div> <!-- Einde menu_button -->		
 				</div> <!-- Einde wrapper -->
             </div> <!-- Einde menu -->
@@ -101,20 +105,22 @@ Changelog :
                 	<h4>Laatst geboren</h4>
 	            	<div id="post_header" class="right">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<?php $array = eennalaatste_kaartje(); ?>
+                        	<h1><?php print($array["naam"]); ?></h1>
+                            <h2><?php print($array["tekst"]); ?></h2>
+                            <h3><?php print($array["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
                     <div id="post_header">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                      	<?php $array = laatste_kaartje(); ?>
+                        	<h1><?php print($array["naam"]); ?></h1>
+                            <h2><?php print($array["tekst"]); ?></h2>
+                            <h3><?php print($array["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
@@ -123,23 +129,23 @@ Changelog :
             <!-- KAARTJES -->
             <div class="kaartjesnummer2">
             	<div class="wrapper">
-                	<h4>Meeste comments</h4>
-	            	<div id="post_header" class="right">
-                    	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                	<h4>Laatst toegevoegd                	</h4>
+                	<div id="post_header" class="right">
+                    	<p><?php $array = eennatoegevoegdlaatste_kaartje(); ?>
+                   	  <h1><?php print($array["naam"]); ?></h1>
+                            <h2><?php print($array["tekst"]); ?></h2>
+                            <h3><?php print($array["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
-                    </div> <!-- Einde post_header -->
+                    	<a href="#" class="button right">Kaartje bekijken</a>
+                  </div> <!-- Einde post_header -->
                     
                     <div id="post_header">
-                    	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                    	<p><?php $array = toegevoegdlaatste_kaartje(); ?>
+                   	  <h1><?php print($array["naam"]); ?></h1>
+                            <h2><?php print($array["tekst"]); ?></h2>
+                            <h3><?php print($array["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
@@ -149,23 +155,26 @@ Changelog :
             <div class="kaartjesnummer3">
             	<div class="wrapper">
                 	<h4>Laatste jongen &amp; meisje</h4>
-	            	<div id="post_header" class="right">
+	            	<?php $array_meisje = laatste_meisje(); ?>
+                    <div id="post_header" class="<?php print($array_meisje["geslacht"]); ?>_border right">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["naam"]) . " "; print($array_meisje["tussenvoegsel"]) . " "; print($array_meisje["achternaam"]); ?></h1>
+                            <h2><?php print($array_meisje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_meisje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
-                    <div id="post_header">
+                  <div id="post_header">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<?php $array_jongen = laatste_jongen(); ?>
+                        	<h1><?php print($array_jongen["naam"]) . " "; print($array_jongen["tussenvoegsel"]) . " "; print($array_jongen["achternaam"]); ?></h1>
+                            <h2><?php print($array_jongen["tekst"]); ?></h2>
+                            <h3><?php print($array_jongen["datum"]); ?>3</h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
-                    </div> <!-- Einde post_header -->
+                    	<a href="#" class="button right">Kaartje bekijken</a>
+                    </div> 
+                    <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
             </div> <!-- Einde kaartjes -->
@@ -220,16 +229,3 @@ Changelog :
         </div> <!-- Einde container -->
     </body>
 </html>
-
-<?php 
-//Moet nog gestest worden
-//Hier krijg je de javascript pop up als je een email verzend in het contactaanvraag formulier
-	if(isset($_GET["emailisverzonden"])){
-		?>
-			<script>
-                alert("Uw email is succesvol verzonden! Wij nemen zo snel mogelijk contact met u op! U bent nu terug op de Home pagina.");
-                window.location.href = "http://tmtg11.ict-lab.nl/website/index.php";
-            </script>
-		<?php
-	}
-?>
