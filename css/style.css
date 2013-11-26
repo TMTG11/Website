@@ -242,7 +242,7 @@ li a:hover {
 
 .content .blok h2 {
 	padding-top: 20px;
-	width: 440px;
+	width: 450px;
 	text-align: justify;
 	font-weight: 100;
 	line-height: 25px;
@@ -257,6 +257,17 @@ li a:hover {
 	width: 450px;
 	height: 500px;
 	overflow: hidden;
+	position: relative;
+}
+
+.image img {
+	position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 450px;
 }
 
 .right {
@@ -319,16 +330,16 @@ li a:hover {
 #contact {
 	min-height: 400px;
 	background-color: #FFF;
-	width: 980px;
+	width: 940px;
 	margin: auto;
-	padding-top: 20px;
-	padding-bottom: 20px;
 	border-left: 10px solid #89cff0;
 }
 
-.kaartjes .wrapper {
-	padding: 0px;
+.kaartjes #contact .wrapper {
+	padding: 20px;
+	width: 900px;
 }
+
 
 #contact h1 {
 	font-weight: bold;
@@ -344,7 +355,7 @@ li a:hover {
 }
 
 #contact table {
-	width: 940px;
+	width: 880px;
 	margin-top: 20px;
 	border-collapse: collapse;
 }
@@ -355,14 +366,14 @@ li a:hover {
 
 #contact input {
 	padding: 10px;
-	width: 920px;
+	width: 880px;
 	font-family: 'Open Sans';
 	font-weight: 300;
 }
 
 #contact textarea {
-	width: 922px;
-	max-width: 922px;
+	width: 882px;
+	max-width: 882px;
 	padding: 10px;
 	font-family: 'Open Sans';
 	font-weight: 300;
@@ -526,4 +537,107 @@ li a:hover {
 #post_header_inlog .button {
 	position: absolute;
 	bottom: 20px;
+}
+
+/* ACCOUNT */
+
+#account {
+	min-height: 400px;
+	background-color: #FFF;
+	width: 930px;
+	margin: auto;
+	border-left: 10px solid #89cff0;
+}
+
+.kaartjes #account .wrapper {
+	padding: 20px;
+	width: 890px;
+}
+
+
+#account h1 {
+	font-weight: bold;
+	width: 520px;
+	color: #89cff0;
+	font-size: 20px;
+}
+
+#account h2 {
+	padding-top: 20px;
+	width: 520px;
+	text-align: justify;
+	font-weight: 100;
+	line-height: 25px;
+}
+
+#account table {
+	width: 500px;
+	margin-top: 20px;
+	border-collapse: collapse;
+}
+
+#account table td, table th {
+	padding-top: 20px;
+}
+
+#account input {
+	padding: 10px;
+	width: 500px;
+	font-family: 'Open Sans';
+	font-weight: 300;
+}
+
+#account textarea {
+	width: 500px;
+	max-width: 882px;
+	padding: 10px;
+	font-family: 'Open Sans';
+	font-weight: 300;
+}
+
+#account .button {
+	width: 250px;
+	font-weight: 600;
+}
+
+.M {
+	color: #89cff0;
+}
+
+.M_tekst {
+	color: #89cff0 !important;
+}
+
+.M_border {
+	border-left: 10px solid #89cff0 !important;
+}
+
+.M_button {
+	background-color: #89cff0 !important;
+	border: #89cff0 solid thin !important;
+}
+
+.M_button:hover {
+	background-color: #FFF !important;
+	border: #89cff0 solid thin !important;
+	color: #89cff0 !important;
+}
+
+.V_tekst {
+	color: #ffc0cb !important;
+}
+
+.V_border {
+	border-left: 10px solid #ffc0cb !important;
+}
+
+.V_button {
+	background-color: #ffc0cb !important;
+	border: #ffc0cb solid thin !important;
+}
+
+.V_button:hover {
+	background-color: #FFF !important;
+	border: #ffc0cb solid thin !important;
+	color: #ffc0cb !important;
 }

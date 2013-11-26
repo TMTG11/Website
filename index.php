@@ -64,14 +64,14 @@ Changelog :
             <!-- HEADER -->
             <div id="header">
             	<div class="wrapper">
-                	<div id="post_header">
-						<?php $array = laatste_kaartje(); ?>
+					<?php $array_kaartje = laatste_kaartje(); ?>
+                	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
-                        	<h1><?php print($array["naam"]); ?></h1>
-                            <h2><?php print($array["tekst"]); ?></h2>
-                            <h3><?php print($array["datum"]); ?></h3>
+                        	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
+                            <h2><?php print($array_kaartje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje bekijken</a>
+                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->
@@ -131,22 +131,24 @@ Changelog :
             <!-- KAARTJES -->
             <div class="kaartjes">
             	<div class="wrapper">
-	            	<div id="post_header" class="right">
-                    	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+					<?php $array_jongen = laatste_jongen(); ?>
+	            	<div id="post_header" class="<?php print($array_jongen["geslacht"]); ?>_border right">
+                    	<p>	
+                        	<h1 class="<?php print($array_jongen["geslacht"]); ?>_tekst"><?php print($array_jongen["naam"]) . " "; print($array_jongen["tussenvoegsel"]) . " "; print($array_jongen["achternaam"]); ?></h1>
+                            <h2><?php print($array_jongen["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_jongen["geslacht"]); ?>_tekst"><?php print($array_jongen["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_jongen["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
-                    <div id="post_header">
+					<?php $array_meisje = laatste_meisje(); ?>
+                    <div id="post_header" class="<?php print($array_meisje["geslacht"]); ?>_border">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["naam"]) . " "; print($array_meisje["tussenvoegsel"]) . " "; print($array_meisje["achternaam"]); ?></h1>
+                            <h2><?php print($array_meisje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_meisje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
