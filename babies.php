@@ -104,24 +104,25 @@ Changelog :
             <div class="kaartjesnummer1">
             	<div class="wrapper">
                 	<h4>Laatst geboren</h4>
-	            	<div id="post_header" class="right">
+					
+					<?php $array_eennalaatste = eennalaatste_kaartje(); ?>
+	            	<div id="post_header" class="<?php print($array_eennalaatste["geslacht"]); ?>_border right">
                     	<p>
-                        	<?php $array = eennalaatste_kaartje(); ?>
-                        	<h1><?php print($array["naam"]); ?></h1>
-                            <h2><?php print($array["tekst"]); ?></h2>
-                            <h3><?php print($array["datum"]); ?></h3>
+                        	<h1 class="<?php print($array_eennalaatste["geslacht"]); ?>_tekst"><?php print($array_eennalaatste["naam"]) . " "; print($array_eennalaatste["tussenvoegsel"]) . " "; print($array_eennalaatste["achternaam"]); ?></h1>
+                            <h2><?php print($array_eennalaatste["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_eennalaatste["geslacht"]); ?>_tekst"><?php print($array_eennalaatste["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje bekijken</a>
+                    	<a href="#" class="button right <?php  print($array_eennalaatste["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
-                    <div id="post_header">
+					<?php $array_laatste = laatste_kaartje(); ?>
+                    <div id="post_header" class="<?php print($array_laatste["geslacht"]); ?>_border">
                     	<p>
-                      	<?php $array = laatste_kaartje(); ?>
-                        	<h1><?php print($array["naam"]); ?></h1>
-                            <h2><?php print($array["tekst"]); ?></h2>
-                            <h3><?php print($array["datum"]); ?></h3>
+                        	<h1 class="<?php print($array_laatste["geslacht"]); ?>_tekst"><?php print($array_laatste["naam"]) . " "; print($array_laatste["tussenvoegsel"]) . " ";  print($array_laatste["achternaam"]); ?></h1>
+                            <h2><?php print($array_laatste["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_laatste["geslacht"]); ?>_tekst"><?php print($array_laatste["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje bekijken</a>
+                    	<a href="#" class="button right <?php  print($array_laatste["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
@@ -130,23 +131,26 @@ Changelog :
             <!-- KAARTJES -->
             <div class="kaartjesnummer2">
             	<div class="wrapper">
-                	<h4>Laatst toegevoegd                	</h4>
-                	<div id="post_header" class="right">
-                    	<p><?php $array = eennatoegevoegdlaatste_kaartje(); ?>
-                   	  <h1><?php print($array["naam"]); ?></h1>
-                            <h2><?php print($array["tekst"]); ?></h2>
-                            <h3><?php print($array["datum"]); ?></h3>
+                	<h4>Laatst toegevoegd</h4>
+					
+					<?php $array_eennalaatsttoegevoegd = eennatoegevoegdlaatste_kaartje(); ?>
+                	<div id="post_header" class="<?php print($array_eennalaatsttoegevoegd["geslacht"]); ?>_border right">
+                    	<p>
+							<h1 class="<?php print($array_eennalaatsttoegevoegd["geslacht"]); ?>_tekst"><?php print($array_eennalaatsttoegevoegd["naam"]) . " "; print($array_eennalaatsttoegevoegd["tussenvoegsel"]) . " "; print($array_eennalaatsttoegevoegd["achternaam"]); ?></h1>
+                            <h2><?php print($array_eennalaatsttoegevoegd["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_eennalaatsttoegevoegd["geslacht"]); ?>_tekst"><?php print($array_eennalaatsttoegevoegd["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje bekijken</a>
-                  </div> <!-- Einde post_header -->
+                    	<a href="#" class="button right <?php  print($array_eennalaatsttoegevoegd["geslacht"]); ?>_button">Kaartje bekijken</a>
+					</div> <!-- Einde post_header -->
                     
-                    <div id="post_header">
-                    	<p><?php $array = toegevoegdlaatste_kaartje(); ?>
-                   	  <h1><?php print($array["naam"]); ?></h1>
-                            <h2><?php print($array["tekst"]); ?></h2>
-                            <h3><?php print($array["datum"]); ?></h3>
+					<?php $array_laatsttoegevoegd = toegevoegdlaatste_kaartje(); ?>
+                    <div id="post_header" class="<?php print($array_laatsttoegevoegd["geslacht"]); ?>_border">
+                    	<p>
+							<h1 class="<?php print($array_laatsttoegevoegd["geslacht"]); ?>_tekst"><?php print($array_laatsttoegevoegd["naam"]) . " "; print($array_laatsttoegevoegd["tussenvoegsel"]) . " "; print($array_laatsttoegevoegd["achternaam"]);?></h1>
+                            <h2><?php print($array_laatsttoegevoegd["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_laatsttoegevoegd["geslacht"]); ?>_tekst"><?php print($array_laatsttoegevoegd["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje bekijken</a>
+                    	<a href="#" class="button right <?php  print($array_laatsttoegevoegd["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header -->
                     
             	</div> <!-- Einde wrapper -->
@@ -155,25 +159,26 @@ Changelog :
             <!-- KAARTJES -->
             <div class="kaartjesnummer3">
             	<div class="wrapper">
-                	<h4>Laatste jongen &amp; meisje</h4>
-	            	<?php $array_meisje = laatste_meisje(); ?>
-                    <div id="post_header" class="<?php print($array_meisje["geslacht"]); ?>_border right">
+                	<h4>Laatste meisje &amp; jongen</h4>
+					
+	            	<?php $array_jongen = laatste_jongen(); ?>
+                    <div id="post_header" class="<?php print($array_jongen["geslacht"]); ?>_border right">
+                    	<p>
+                        	<h1 class="<?php print($array_jongen["geslacht"]); ?>_tekst"><?php print($array_jongen["naam"]) . " "; print($array_jongen["tussenvoegsel"]) . " "; print($array_jongen["achternaam"]); ?></h1>
+                            <h2><?php print($array_jongen["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_jongen["geslacht"]); ?>_tekst"><?php print($array_jongen["datum"]); ?></h3>
+                    	</p>
+                    	<a href="#" class="button right <?php  print($array_jongen["geslacht"]); ?>_button">Kaartje bekijken</a>
+                    </div> <!-- Einde post_header -->
+                    
+					<?php $array_meisje = laatste_meisje(); ?>
+					<div id="post_header" class="<?php print($array_meisje["geslacht"]); ?>_border">
                     	<p>
                         	<h1 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["naam"]) . " "; print($array_meisje["tussenvoegsel"]) . " "; print($array_meisje["achternaam"]); ?></h1>
                             <h2><?php print($array_meisje["tekst"]); ?></h2>
-                            <h3 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["datum"]); ?></h3>
+                            <h3 class="<?php print($array_meisje["geslacht"]); ?>_tekst"><?php print($array_meisje["datum"]); ?>3</h3>
                     	</p>
                     	<a href="#" class="button right <?php  print($array_meisje["geslacht"]); ?>_button">Kaartje bekijken</a>
-                    </div> <!-- Einde post_header -->
-                    
-                  <div id="post_header">
-                    	<p>
-                        	<?php $array_jongen = laatste_jongen(); ?>
-                        	<h1><?php print($array_jongen["naam"]) . " "; print($array_jongen["tussenvoegsel"]) . " "; print($array_jongen["achternaam"]); ?></h1>
-                            <h2><?php print($array_jongen["tekst"]); ?></h2>
-                            <h3><?php print($array_jongen["datum"]); ?>3</h3>
-                    	</p>
-                    	<a href="#" class="button right">Kaartje bekijken</a>
                     </div> 
                     <!-- Einde post_header -->
                     
