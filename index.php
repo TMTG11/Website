@@ -79,21 +79,22 @@ Changelog :
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form>
+                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken_verwerk.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
                                     <select name="search">
                                         <option value="voornaam">Voornaam</option>
                                         <option value="achternaam">Achternaam</option>
-                                        <option value="roepnaam">Roepnaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
+                                        <option value="geslacht">Provincie</option>
                                         <option value="geslacht">Geslacht</option>
                                     </select>
                                 </td>
-                                <td width="540"><input name="" type="text" placeholder="zoekopdracht"/></td>
-                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" /></td>
+                                <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht"/></td>
+                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" />
+                                </td>
                             </tr>
                         </table>
                     </form>
