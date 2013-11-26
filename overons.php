@@ -1,4 +1,7 @@
 <?php
+	session_start();
+	require_once('scripts/inlogcheck.php');
+	require_once('scripts/kaartjes.php');
 /*
 session_start();
 //LOGGERSCIPT 7-11-2013 Mies
@@ -52,12 +55,12 @@ if(isset($_POST["zoeken"])){
 	}
 	if($magmailen == "true"){
 		//Variabelen voor e-mail. -David
-		$naamvraagsteller = htmlspecialchars($_REQUEST['naam']);
-		$emailvraagsteller = htmlspecialchars($_REQUEST['email']);
-		$telefoonvraagsteller = htmlspecialchars($_REQUEST['telefoon']);
-		$berichtvraagsteller = htmlspecialchars($_REQUEST['bericht']);
+		$naamvraagsteller = htmlspecialchars($_POST['naam']);
+		$emailvraagsteller = htmlspecialchars($_POST['email']);
+		$telefoonvraagsteller = htmlspecialchars($_POST['telefoon']);
+		$berichtvraagsteller = htmlspecialchars($_POST['bericht']);
 		//Hier word het ip adres opgevraagt
-		$ipadres = "Hier zou het IP adres kunnen komen";
+		$ipadres = $ipadres;
 		//Hier word de huidige datum en tijd opgevraagt
 		$datum = date("D, d M Y H:i:s", $_SERVER['REQUEST_TIME']);
 		//Mail Templates, idee van mies om grote lappen tekst midden in code te voorkomen
@@ -108,7 +111,7 @@ if(!isset($alert)){
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
-						<a href="index.php"><img src="img/logo/logo_blauw.png" width="256" height="63" alt="Logo" /></a>
+						<a href="index.php"><img src="<?php print(logo("link")); ?>" width="256" height="63" alt="Logo" /></a>
 					</div> <!-- Einde logo -->
                     <!-- MENU ITEMS -->
 					<div id="menu_items">
@@ -116,11 +119,11 @@ if(!isset($alert)){
 							<li><a href="index.php">Home</a></li>
 							<li><a href="overons.php" class="current_active">Over ons</a></li>
 							<li><a href="babies.php">Babies</a></li>
-							<li><a href="login.php">Inloggen</a></li>
+							<li><a href="<?php print(inloggen_button("link")); ?>"><?php print(inloggen_button("tekst")); ?></a></li>
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
-						<a href="#" class="button">registreren</a>
+						<a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a>
 					</div> <!-- Einde menu_button -->		
 				</div> <!-- Einde wrapper -->
             </div> <!-- Einde menu -->
@@ -128,13 +131,14 @@ if(!isset($alert)){
             <!-- HEADER -->
             <div id="header">
             	<div class="wrapper">
-                	<div id="post_header">
+					<?php $array_kaartje = laatste_kaartje(); ?>
+                	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
+                            <h2><?php print($array_kaartje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->
@@ -166,17 +170,22 @@ if(!isset($alert)){
             <!-- CONTENT -->
             <div class="content">
             	<div class="wrapper">
+            	
 					<div class="padding"></div>
+					
 						<div class="image right">
 							<img src="img/background_header.png"/>
 						</div> <!-- Einde image -->
+						
 						<div class="blok">
 							<p>
 								<h1>Index pagina</h1>
 								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
-								</p>
+							</p>
 						</div> <!-- Einde blok -->
+						
 							<hr class="line">
+							
 						<div class="blok right">
 							<p>
 								<h1>Index pagina</h1>
@@ -187,7 +196,9 @@ if(!isset($alert)){
 						<div class="image">
 							<img src="img/background_header.png"/>
 						</div> <!-- Einde image -->
+						
 					<div class="padding"></div>	
+					
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde content -->
             

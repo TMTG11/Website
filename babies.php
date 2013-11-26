@@ -64,18 +64,19 @@ Changelog :
             <!-- HEADER -->
             <div id="header">
             	<div class="wrapper">
-                	<div id="post_header">
+					<?php $array_kaartje = laatste_kaartje(); ?>
+                	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
+                            <h2><?php print($array_kaartje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->
             
-           <!-- SEARCH -->
+            <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
                 	<form>
