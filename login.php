@@ -25,6 +25,7 @@ Changelog :
 25-11-2013 Maarten Buttons 
 26-11-2013 Mies Doorverwijzingen vanaf activatie pagina
 26-11-2013 Maarten Babykaartje slider
+26-11-2013 Mies Commments!
 
 Changelog voor stijl van pagina :
 
@@ -33,6 +34,7 @@ Changelog voor stijl van pagina :
 if($_SESSION["ingelogd"]){
 	header('Location: http://tmtg11.ict-lab.nl/website/account.php');
 }
+//Als er een variabel met de naam actief in de URL word gevonden word gekeken welke melding er word weergegeven
 if(isset($_GET["actief"])){
 	switch ($_GET["actief"]) {
 	case "true":
@@ -54,6 +56,19 @@ if(isset($_GET["actief"])){
 	default:
 		$alert = $alert." Er is iets mis met de doorverwijzing. (Of je bent gewoon lekker aan het klooien) <br/>";
 		$class = "negatief";
+	//De default melding komt eigenlijk nooit voor, alleen als een gebruiker zelf iets invult
+	}
+}
+if(isset($_GET["melding"])){
+	switch ($_GET["melding"]) {
+	case "logon":
+		$alert = $alert."U bent niet ingelogd, u kunt hierom nog geen baby toevoegen. Log hieronder in of maak een account. <br/>";
+		$class = "normaal";
+		break;
+	default:
+		$alert = $alert." Er is iets mis met de doorverwijzing. (Of je bent gewoon lekker aan het klooien) <br/>";
+		$class = "negatief";
+	//De default melding komt eigenlijk nooit voor, alleen als een gebruiker zelf iets invult
 	}
 }
 
@@ -84,7 +99,9 @@ if(isset($_POST['login'])){
 	$hashedPW = hash('sha256', $saltedPW);
 	
 	//Login - Mies 12-11-2013
+	//Query
 	$opdracht = mysql_query("SELECT * FROM gebruiker WHERE Email = '$email' AND Wachtwoord= '$hashedPW' AND IsVerified='1'");
+	//Indien de Query succesvol word uitgevoerd word de melding verandert, de sessie ingesteld en word de gebruiker doorverwezen
 	if($opdracht){
 		$array=mysql_fetch_array($opdracht);
 		if(count($array)>1){
@@ -99,12 +116,15 @@ if(isset($_POST['login'])){
 			$_SESSION["userinfo"]=$array;
 			header('Location: http://tmtg11.ict-lab.nl/website/account.php');
 		}else{
+		//Anders word de melding aangepast, en de sessie geleegd
 			$alert = $alert."Gebruiker niet gevonden. Heeft U uw account al geactiveerd? Zie e-mail voor activatie link<br/>";
 			$class = "negatief";
 			$_SESSION["ingelogd"] = false;
 		}
 	}else{
+		//Als er helemaal geen MYSQL query voorkomt word de melding weer aangepast.
 		$foutmeldingen[]="MySQL fout".mysql_error();
+		$class = "negatief";
 		$alert = $alert."Er is hellaas iets fout gegaan in ons systeem. De fout is vastgelegd in de logs. <br/>";
 	}	
 }

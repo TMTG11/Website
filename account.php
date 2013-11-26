@@ -2,26 +2,29 @@
 	session_start();
 	require_once('scripts/inlogcheck.php');
 	require_once('scripts/kaartjes.php');
+	
 /*
 Changelog
 25-11-2013 Mies Aanmaak Account.php Eerste scripts. Uitlogknop
 26-11-2013 Mies	Maken form. Prefill form
+26-11-2013 Mies	Comments
 
 */
-	session_start();
-	require_once('scripts/inlogcheck.php');
-	include("/connection.php");
-	if(!$_SESSION["ingelogd"]){
-		header('Location: http://tmtg11.ict-lab.nl/website/login.php');
-	}
-	if($_GET["uitloggen"]=="ja"){
-		session_destroy();
-		header('Location: http://tmtg11.ict-lab.nl/website/login.php');
-	}	
-	$sessioninfo = $_SESSION["userinfo"];
-	$id = $sessioninfo["GebruikersID"];
-	$opdracht = mysql_query("SELECT * FROM gebruiker WHERE GebruikersID = '$id'");
-	$array = mysql_fetch_array($opdracht);
+
+//Als de sessie niet gevonden is word je automatisch doorverwezen naar de login pagina
+if(!$_SESSION["ingelogd"]){
+	header('Location: http://tmtg11.ict-lab.nl/website/login.php');
+}
+//Als de uitlog knop is ingedrukt word de sessie verwijdert en de gebruiker doorverwezen.
+if($_GET["uitloggen"]=="ja"){
+	session_destroy();
+	header('Location: http://tmtg11.ict-lab.nl/website/login.php');
+}
+//Gegevens worden opgehaald uit de database DMV ID uit sessie
+$sessioninfo = $_SESSION["userinfo"];
+$id = $sessioninfo["GebruikersID"];
+$opdracht = mysql_query("SELECT * FROM gebruiker WHERE GebruikersID = '$id'");
+$array = mysql_fetch_array($opdracht);
 
 //ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
 if(!isset($alert)){
@@ -58,7 +61,10 @@ if(!isset($alert)){
 							<li><a href="index.php">Home</a></li>
 							<li><a href="overons.php">Over ons</a></li>
 							<li><a href="babies.php">Babies</a></li>
-							<li><a href="<?php print(inloggen_button("link")); ?>" class="current_active"><?php print(inloggen_button("tekst")); ?></a></li>
+							<?php 
+							//Door middel van functies word hieronder bepaalt wat de inhoud van de Registreren en Account knop is.
+							?>
+							<li><a href="<?php print(inloggen_button("link"));?>" class="current_active"><?php print(inloggen_button("tekst")); ?></a></li>
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
@@ -73,6 +79,7 @@ if(!isset($alert)){
 					<?php $array_kaartje = laatste_kaartje(); ?>
                 	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
+							<?php //Kaartje op de slider word gevuld?>
                         	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
                             <h2><?php print($array_kaartje["tekst"]); ?></h2>
                             <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
@@ -125,13 +132,13 @@ if(!isset($alert)){
             	<div id="account">
             		<div class="wrapper">
                     	<p class="right">
-								<input name="zoeken" type="submit" value="Uitloggen" class="button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
+								<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
 								<input name="zoeken" type="submit" value="Account pagina" class="button" /><br/>
 								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button" />
 						<p>
                         	<h1>Contactformulier</h1>
                             <h2>Vul informatie hieronder aan, leeg gelaten velden worden niet bijgewerkt</h2>
-                            <form method="post" action="overons.php">
+                            <form method="post" action="account.php">
                             	<table>
                                 	<tr>
                                         <td><input name="naam" type="text" placeholder="Naam <?php if(isset($array["Voornaam"])){print(" : ".$array["Voornaam"]." ".$array["Tussenvoegsel"]." ".$array["Achternaam"]);}?>" required/></td>
@@ -174,9 +181,11 @@ if(!isset($alert)){
 						<div class="image right">
 							<img src="img/background_header.png"/>
 						</div> <!-- Einde image -->
-						<div class="blok">
-							<?php print_r($array); ?>
-						</div> <!-- Einde blok -->
+						<div class="blok"><p>
+								<h1>Index pagina</h1>
+								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
+							</p>
+							</div> <!-- Einde blok -->
 							<hr class="line">
 						<div class="blok right">
 							<p>
