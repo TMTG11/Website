@@ -1,21 +1,33 @@
-<?php 
+<?php
+	session_start();
+	require_once('scripts/inlogcheck.php');
+	require_once('scripts/kaartjes.php');
 /*
 Changelog
 25-11-2013 Mies Aanmaak Account.php Eerste scripts. Uitlogknop
+26-11-2013 Mies	Maken form. Prefill form
 
 */
 	session_start();
 	require_once('scripts/inlogcheck.php');
+	include("/connection.php");
 	if(!$_SESSION["ingelogd"]){
 		header('Location: http://tmtg11.ict-lab.nl/website/login.php');
 	}
 	if($_GET["uitloggen"]=="ja"){
 		session_destroy();
 		header('Location: http://tmtg11.ict-lab.nl/website/login.php');
-	}
-	$alert="<a href='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'>Uitloggen</a>";
-	$array = $_SESSION["userinfo"];
+	}	
+	$sessioninfo = $_SESSION["userinfo"];
+	$id = $sessioninfo["GebruikersID"];
+	$opdracht = mysql_query("SELECT * FROM gebruiker WHERE GebruikersID = '$id'");
+	$array = mysql_fetch_array($opdracht);
 
+//ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
+if(!isset($alert)){
+	$alert="Welkom op de account pagina";
+	$class = "normaal";
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,13 +70,14 @@ Changelog
             <!-- HEADER -->
             <div id="header">
             	<div class="wrapper">
-                	<div id="post_header">
+					<?php $array_kaartje = laatste_kaartje(); ?>
+                	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
+                            <h2><?php print($array_kaartje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->
@@ -112,24 +125,37 @@ Changelog
             	<div id="account">
             		<div class="wrapper">
                     	<p class="right">
+								<input name="zoeken" type="submit" value="Uitloggen" class="button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
 								<input name="zoeken" type="submit" value="Account pagina" class="button" /><br/>
 								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button" />
 						<p>
                         	<h1>Contactformulier</h1>
-                            <h2>Hallo</h2>
+                            <h2>Vul informatie hieronder aan, leeg gelaten velden worden niet bijgewerkt</h2>
                             <form method="post" action="overons.php">
                             	<table>
                                 	<tr>
-                                        <td><input name="naam" type="text" placeholder="Voor- & Achternaam" required/></td>
+                                        <td><input name="naam" type="text" placeholder="Naam <?php if(isset($array["Voornaam"])){print(" : ".$array["Voornaam"]." ".$array["Tussenvoegsel"]." ".$array["Achternaam"]);}?>" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="email" type="text" placeholder="E-mail adres" required/></td>
+                                        <td><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="telefoon" type="text" placeholder="Telefoonnummer" required/></td>
+                                        <td><input name="telefoon" type="text" placeholder="Woonplaats <?php if(isset($array["Woonplaats"])){print(" : ".$array["Woonplaats"]);}?>" required/></td>
+                                    </tr>
+									<tr>
+                                        <td><input name="telefoon" type="text" placeholder="Provincie <?php if(isset($array["Provincie"])){print(" : ".$array["Provincie"]);}?>" required/></td>
+                                    </tr>
+									<tr>
+                                        <td><input name="telefoon" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" required/></td>
+                                    </tr>
+									<tr>
+                                        <td><input name="telefoon" type="text" placeholder="Email <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
+                                    </tr>
+									<tr>
+                                        <td><input name="telefoon" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750" required placeholder="Uw bericht..."></textarea></td>
+                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750" required placeholder="Uw bericht...<?php if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td><input name="zoeken" type="submit" value="Verzenden" class="button" /></td>

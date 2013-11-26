@@ -1,7 +1,8 @@
 <?php
 	session_start();
-	include("../connection.php");
+	require_once("/connection.php");
 	require_once('scripts/inlogcheck.php');
+	require_once('scripts/kaartjes.php');
 
 /*
 TO DO :
@@ -22,6 +23,8 @@ Changelog :
 19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
 25-11-2013 Mies Sessies. Doorverwijzing naar Account.php
 25-11-2013 Maarten Buttons 
+26-11-2013 Mies Doorverwijzingen vanaf activatie pagina
+26-11-2013 Maarten Babykaartje slider
 
 Changelog voor stijl van pagina :
 
@@ -29,6 +32,29 @@ Changelog voor stijl van pagina :
 //SessieCheck
 if($_SESSION["ingelogd"]){
 	header('Location: http://tmtg11.ict-lab.nl/website/account.php');
+}
+if(isset($_GET["actief"])){
+	switch ($_GET["actief"]) {
+	case "true":
+		$alert = $alert." Account geactiveerd. Veel plezier op Babyberichten.nl<br/>";
+		$class = "positief";
+		break;
+	case "false":
+		$alert = $alert." Account niet succesvol geactiveerd <br/>";
+		$class = "negatief";
+		break;
+	case "notfound":
+		$alert = $alert." Account niet gevonden <br/>";
+		$class = "negatief";
+		break;
+	case "error":
+		$alert = $alert." Er is iets fout gegaan met de database <br/>";
+		$class = "negatief";
+		break;
+	default:
+		$alert = $alert." Er is iets mis met de doorverwijzing. (Of je bent gewoon lekker aan het klooien) <br/>";
+		$class = "negatief";
+	}
 }
 
 //afvangen login button
@@ -224,13 +250,14 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
             <!-- HEADER -->
             <div id="header">
             	<div class="wrapper">
-                	<div id="post_header">
+					<?php $array_kaartje = laatste_kaartje(); ?>
+                	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
-                        	<h1>Maarten Paauw</h1>
-                            <h2>Hier komt de tekst over de baby.</h2>
-                            <h3>31-12-2013</h3>
+                        	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
+                            <h2><?php print($array_kaartje["tekst"]); ?></h2>
+                            <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right">Kaartje</a>
+                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->

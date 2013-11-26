@@ -7,28 +7,29 @@ Nieuw Logscript
 Changelog : 
 14-11-2013 Mies - Begin activatie script (checkt alleen of gebruiker bestaat)
 18-11-2013 Mies - Account word ook daadwerkelijk geactiveerd
+26-11-2013 Mies - Doorverwijzing naar inlog.php
 */
 include("../connection.php");
 $activatiecode = mysql_real_escape_string($_GET["code"]);
 $email = mysql_real_escape_string($_GET["email"]);
 $opdracht2 = mysql_query("SELECT * FROM gebruiker WHERE Email='$email' AND VerificatieCode='$activatiecode'");
 //$opdracht = ;
-	if($opdracht2){
-		$array=mysql_fetch_array($opdracht2);
-		if(count($array)>1){
-			$foutmeldingen[]="Gebruiker gevonden";
-			$activatie = mysql_query("UPDATE gebruiker SET IsVerified = 1;");
-			if($activatie){
-				$foutmeldingen[]="Uw account is geactiveerd";
-			}else{
-				$foutmeldingen[]="Helaas is er iets mis gegaan bij de activatie van uw account, probeer het later nog eens. Het probleem is vastgelegd in onze logs.";
-			}
+if($opdracht2){
+	$array=mysql_fetch_array($opdracht2);
+	if(count($array)>1){
+		$foutmeldingen[]="Gebruiker gevonden";
+		$activatie = mysql_query("UPDATE gebruiker SET IsVerified = 1;");
+		if($activatie){
+			header('Location: http://tmtg11.ict-lab.nl/website/login.php?actief=true');
 		}else{
-			$foutmeldingen[]="Gebruiker niet gevonden.";
+			header('Location: http://tmtg11.ict-lab.nl/website/login.php?actief=false');
 		}
 	}else{
-		$foutmeldingen[]="Fout bij de MSQL Query";
-	}	
+		header('Location: http://tmtg11.ict-lab.nl/website/login.php?actief=notfound');
+	}
+}else{
+	header('Location: http://tmtg11.ict-lab.nl/website/login.php?actief=error');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,8 +38,6 @@ $opdracht2 = mysql_query("SELECT * FROM gebruiker WHERE Email='$email' AND Verif
 	<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
 </head>
 <body>
-<?php
-	print_r($foutmeldingen);
-?>
+	Er is iets vreselijk mis gegaan. <a href="http://tmtg11.ict-lab.nl/website/">Klik hier om terug te gaan naar de index pagina.</a>
 </body>
 </html>
