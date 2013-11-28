@@ -30,8 +30,8 @@ Changelog :
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    		<title>Babies | Babyberichten.nl</title>
         
-        <link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
-		<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+        <link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
+		<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>

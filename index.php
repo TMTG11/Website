@@ -79,7 +79,7 @@ Changelog :
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken_verwerk.php">
+                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
@@ -88,8 +88,6 @@ Changelog :
                                         <option value="achternaam">Achternaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
-                                        <option value="geslacht">Provincie</option>
-                                        <option value="geslacht">Geslacht</option>
                                     </select>
                                 </td>
                                 <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht"/></td>

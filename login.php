@@ -65,6 +65,11 @@ if(isset($_GET["melding"])){
 		$alert = $alert."U bent niet ingelogd, u kunt hierom nog geen baby toevoegen. Log hieronder in of maak een account. <br/>";
 		$class = "normaal";
 		break;
+		
+	case "uitgelogd":
+		$alert = $alert."U bent uitgelogd. Tot ziens op Babyberichten.nl <br/>";
+		$class = "normaal";
+		break;
 	default:
 		$alert = $alert." Er is iets mis met de doorverwijzing. (Of je bent gewoon lekker aan het klooien) <br/>";
 		$class = "negatief";
@@ -236,8 +241,8 @@ if(in_array($_SERVER['REMOTE_ADDR'],$whitelist)){
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    		<title>Inloggen | Babyberichten.nl</title>
         
-        <link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
-		<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+        <link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
+		<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>

@@ -18,13 +18,17 @@ if(!$_SESSION["ingelogd"]){
 //Als de uitlog knop is ingedrukt word de sessie verwijdert en de gebruiker doorverwezen.
 if($_GET["uitloggen"]=="ja"){
 	session_destroy();
-	header('Location: http://tmtg11.ict-lab.nl/website/login.php');
+	header('Location: http://tmtg11.ict-lab.nl/website/login.php?melding=uitgelogd');
 }
 //Gegevens worden opgehaald uit de database DMV ID uit sessie
 $sessioninfo = $_SESSION["userinfo"];
 $id = $sessioninfo["GebruikersID"];
 $opdracht = mysql_query("SELECT * FROM gebruiker WHERE GebruikersID = '$id'");
 $array = mysql_fetch_array($opdracht);
+//Update voor account
+if(isset($_POST["update"])){
+	$alert="Update button ingedrukt";
+}
 
 //ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
 if(!isset($alert)){
@@ -39,8 +43,8 @@ if(!isset($alert)){
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    		<title>Inloggen | Babyberichten.nl</title>
         
-        <link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
-		<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+        <link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
+		<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -165,7 +169,7 @@ if(!isset($alert)){
                                         <td><textarea name="bericht" cols=25 rows="6" maxlength="750" required placeholder="Uw bericht...<?php if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="zoeken" type="submit" value="Verzenden" class="button" /></td>
+                                        <td><input name="update" type="submit" value="Update uw account" class="button" /></td>
                                     </tr>
                                 </table>
                             </form>
