@@ -588,8 +588,8 @@ li a:hover {
 }
 
 #account textarea {
-	width: 500px;
-	max-width: 882px;
+	width: 502px;
+	max-width: 502px;
 	padding: 10px;
 	font-family: 'Open Sans';
 	font-weight: 300;
@@ -600,6 +600,19 @@ li a:hover {
 	font-weight: 600;
 }
 
+.logout {
+	background-color: #F00;
+	border: solid thin #F00;
+}
+
+.logout:hover {
+	background-color: #FFF;
+	border: solid thin #F00;
+	color: #F00;
+}
+
+/* MAN */
+
 .M {
 	color: #89cff0;
 }
@@ -608,8 +621,16 @@ li a:hover {
 	color: #89cff0 !important;
 }
 
+.M_border_box {
+	border: 1px solid #89cff0 !important;
+}
+
 .M_border {
 	border-left: 10px solid #89cff0 !important;
+}
+
+.M_border_top {
+	border-top: 10px solid #89cff0 !important;
 }
 
 .M_button {
@@ -623,12 +644,31 @@ li a:hover {
 	color: #89cff0 !important;
 }
 
+.M_select {
+	border: 1px solid #89cff0 !important;
+	background-color: #89cff0 !important;
+}
+
+.M_achtergrond {
+	background-color: #89cff0 !important;
+}
+
+/* VROUW */
+
 .V_tekst {
 	color: #ffc0cb !important;
 }
 
+.V_border_box {
+	border: 1px solid #ffc0cb !important;
+}
+
 .V_border {
 	border-left: 10px solid #ffc0cb !important;
+}
+
+.V_border_top {
+	border-top: 10px solid #ffc0cb !important;
 }
 
 .V_button {
@@ -640,4 +680,13 @@ li a:hover {
 	background-color: #FFF !important;
 	border: #ffc0cb solid thin !important;
 	color: #ffc0cb !important;
+}
+
+.V_select {
+	border: 1px solid #ffc0cb !important;
+	background-color: #ffc0cb !important;
+}
+
+.V_achtergrond {
+	background-color: #ffc0cb !important;
 }
