@@ -3,6 +3,8 @@
 	require_once('scripts/inlogcheck.php');
 	require_once('scripts/kaartjes.php');
 	
+	$geslacht = kleuren();
+	
 /*
 Changelog
 25-11-2013 Mies Aanmaak Account.php Eerste scripts. Uitlogknop
@@ -49,11 +51,11 @@ if(!isset($alert)){
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
-    
+    <?php var_dump($_POST);?>
     <body>
     	<div id="container"> 
     	  	<!-- MENU -->
-        	<div id="menu">
+        	<div id="menu" class="<?php print $geslacht ?>_border_top">
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
@@ -72,7 +74,7 @@ if(!isset($alert)){
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
-						<a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a>
+						<a href="<?php print(registreren_button("link")); ?>" class="button <?php print $geslacht ?>_button"><?php print(registreren_button("tekst")); ?></a>
 					</div> <!-- Einde menu_button -->		
 				</div> <!-- Einde wrapper -->
             </div> <!-- Einde menu -->
@@ -96,21 +98,20 @@ if(!isset($alert)){
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form>
+                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
-                                    <select name="search">
+                                    <select name="search" class=" <?php print $geslacht ?>_select">
                                         <option value="voornaam">Voornaam</option>
                                         <option value="achternaam">Achternaam</option>
-                                        <option value="roepnaam">Roepnaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
-                                        <option value="geslacht">Geslacht</option>
                                     </select>
                                 </td>
-                                <td width="540"><input name="" type="text" placeholder="zoekopdracht"/></td>
-                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" /></td>
+                                <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht" class=" <?php print $geslacht ?>_border_box"/></td>
+                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button <?php print $geslacht ?>_button" />
+                                </td>
                             </tr>
                         </table>
                     </form>
@@ -122,7 +123,6 @@ if(!isset($alert)){
            		<div class="wrapper">
             		<div id="meldingen" class="<?php print($class);?>">
                     	<h2>
-						
 							<?php
                                 print($alert);
                             ?>
@@ -133,43 +133,43 @@ if(!isset($alert)){
                    
 			 <!-- CONTACT -->
             <div class="kaartjes">
-            	<div id="account">
+            	<div id="account" class="<?php print $geslacht ?>_border">
             		<div class="wrapper">
                     	<p class="right">
 								<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
-								<input name="zoeken" type="submit" value="Account pagina" class="button" /><br/>
-								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button" />
+								<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" /><br/>
+								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" />
 						<p>
-                        	<h1>Contactformulier</h1>
+                        	<h1 class="<?php print $geslacht ?>_tekst">Gegevens</h1>
                             <h2>Vul informatie hieronder aan, leeg gelaten velden worden niet bijgewerkt</h2>
                             <form method="post" action="account.php">
                             	<table>
                                 	<tr>
-                                        <td><input name="naam" type="text" placeholder="Naam <?php if(isset($array["Voornaam"])){print(" : ".$array["Voornaam"]." ".$array["Tussenvoegsel"]." ".$array["Achternaam"]);}?>" required/></td>
+                                        <td><input name="naam" type="text" placeholder="Naam <?php if(isset($array["Voornaam"])){print(" : ".$array["Voornaam"]." ".$array["Tussenvoegsel"]." ".$array["Achternaam"]);}?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
+                                        <td><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="telefoon" type="text" placeholder="Woonplaats <?php if(isset($array["Woonplaats"])){print(" : ".$array["Woonplaats"]);}?>" required/></td>
+                                        <td><input name="woonplaats" type="text" placeholder="Woonplaats <?php if(isset($array["Woonplaats"])){print(" : ".$array["Woonplaats"]);}?>" /></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Provincie <?php if(isset($array["Provincie"])){print(" : ".$array["Provincie"]);}?>" required/></td>
+                                        <td><input name="provincie" type="text" placeholder="Provincie <?php if(isset($array["Provincie"])){print(" : ".$array["Provincie"]);}?>" /></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" required/></td>
+                                        <td><input name="geboortedatum" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" /></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Email <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
+                                        <td><input name="email" type="text" placeholder="Email <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" /></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" required/></td>
+                                        <td><input name="geslacht" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750" required placeholder="Uw bericht...<?php if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
+                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750"  placeholder="Uw bericht...<?php if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="update" type="submit" value="Update uw account" class="button" /></td>
+                                        <td><input name="update" type="submit" value="Update uw account" class="button <?php print $geslacht ?>_button" /></td>
                                     </tr>
                                 </table>
                             </form>
@@ -186,14 +186,14 @@ if(!isset($alert)){
 							<img src="img/background_header.png"/>
 						</div> <!-- Einde image -->
 						<div class="blok"><p>
-								<h1>Index pagina</h1>
+								<h1 class="<?php print $geslacht ?>_tekst">Account pagina</h1>
 								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
 							</p>
 							</div> <!-- Einde blok -->
 							<hr class="line">
 						<div class="blok right">
 							<p>
-								<h1>Index pagina</h1>
+								<h1 class="<?php print $geslacht ?>_tekst">Account pagina</h1>
 								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
 							</p>
 						</div> <!-- Einde blok -->
@@ -206,7 +206,7 @@ if(!isset($alert)){
             </div> <!-- Einde content -->
                
             <!-- FOOTER -->
-            <div id="footer">
+            <div id="footer" class="<?php print $geslacht ?>_achtergrond">
             	<div class="wrapper">
 	            		<div class="right">
 	            			<p>
