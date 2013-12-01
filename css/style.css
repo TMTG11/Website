@@ -2,7 +2,7 @@
 
 body {
 	margin: 0px;
-	background-color: #ccc;
+	background-color: #fff;
 	font-family: "Open Sans";
 }
 
@@ -390,7 +390,7 @@ li a:hover {
 	width: 100%;
 	min-width: 1040px;
 	height: auto;
-	background-color: #c3ecff;
+	background-color: rgba(194,235,255,0.75);
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
@@ -653,6 +653,10 @@ li a:hover {
 	background-color: #89cff0 !important;
 }
 
+.M_achtergrond_opacity {
+	background-color: rgba(194,235,255,0.75) !important;
+}
+
 /* VROUW */
 
 .V_tekst {
@@ -689,4 +693,8 @@ li a:hover {
 
 .V_achtergrond {
 	background-color: #ffc0cb !important;
+}
+
+.V_achtergrond_opacity {
+	background-color: rgba(255,192,203,0.75) !important;
 }

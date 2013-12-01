@@ -2,6 +2,8 @@
 	session_start();
 	require_once('scripts/inlogcheck.php');
 	require_once('scripts/kaartjes.php');
+	
+	$geslacht = kleuren();
 /*
 session_start();
 //LOGGERSCIPT 7-11-2013 Mies
@@ -40,7 +42,7 @@ Changelog :
     <body>
     	<div id="container"> 
     	  	<!-- MENU -->
-        	<div id="menu">
+        	<div id="menu" class="<?php print $geslacht ?>_border_top">
 				<div class="wrapper">
                     <!-- LOGO -->
 					<div id="logo">
@@ -56,7 +58,7 @@ Changelog :
 						</ul>
 					</div> <!-- Einde menu_items -->		
 					<div id="menu_button">
-						<a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a>
+						<a href="<?php print(registreren_button("link")); ?>" class="button <?php print $geslacht ?>_button"><?php print(registreren_button("tekst")); ?></a>
 					</div> <!-- Einde menu_button -->		
 				</div> <!-- Einde wrapper -->
             </div> <!-- Einde menu -->
@@ -79,21 +81,20 @@ Changelog :
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form>
+                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
-                                    <select name="search">
+                                    <select name="search" class=" <?php print $geslacht ?>_select">
                                         <option value="voornaam">Voornaam</option>
                                         <option value="achternaam">Achternaam</option>
-                                        <option value="roepnaam">Roepnaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
-                                        <option value="geslacht">Geslacht</option>
                                     </select>
                                 </td>
-                                <td width="540"><input name="" type="text" placeholder="zoekopdracht"/></td>
-                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" /></td>
+                                <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht" class=" <?php print $geslacht ?>_border_box"/></td>
+                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button <?php print $geslacht ?>_button" />
+                                </td>
                             </tr>
                         </table>
                     </form>
@@ -101,7 +102,7 @@ Changelog :
             </div> <!-- Einde search -->
             
             <!-- KAARTJES -->
-            <div class="kaartjesnummer1">
+            <div class="kaartjesnummer1 <?php print $geslacht ?>_achtergrond_opacity">
             	<div class="wrapper">
                 	<h4>Laatst geboren</h4>
 					
@@ -131,7 +132,7 @@ Changelog :
             <!-- KAARTJES -->
             <div class="kaartjesnummer2">
             	<div class="wrapper">
-                	<h4>Laatst toegevoegd</h4>
+                	<h4 class="<?php print $geslacht ?>_tekst">Laatst toegevoegd</h4>
 					
 					<?php $array_eennalaatsttoegevoegd = eennatoegevoegdlaatste_kaartje(); ?>
                 	<div id="post_header" class="<?php print($array_eennalaatsttoegevoegd["geslacht"]); ?>_border right">
@@ -194,14 +195,14 @@ Changelog :
 						</div> <!-- Einde image -->
 						<div class="blok">
 							<p>
-								<h1>Index pagina</h1>
+								<h1 class="<?php print $geslacht ?>_tekst">Babies pagina</h1>
 								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
 								</p>
 						</div> <!-- Einde blok -->
 							<hr class="line">
 						<div class="blok right">
 							<p>
-								<h1>Index pagina</h1>
+								<h1 class="<?php print $geslacht ?>_tekst">Babies pagina</h1>
 								<h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
 							</p>
 						</div> <!-- Einde blok -->
@@ -215,7 +216,7 @@ Changelog :
             </div> <!-- Einde content -->
             
             <!-- FOOTER -->
-            <div id="footer">
+            <div id="footer" class="<?php print $geslacht ?>_achtergrond">
             	<div class="wrapper">
 	            		<div class="right">
 	            			<p>
