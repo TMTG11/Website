@@ -25,6 +25,7 @@ Changelog :
 19-11-2013 - Mies rewrite mailscript, formverificatie, e-mail en dergelijke
 19-11-2013 - David HTMLSpecialchars voor variablen e-mail. Compacter gemaakt door Mies (Gewoon $_POST[] ipv variabel met $_POST erin en dan HTMLSpecialchars)
 19-11-2013 Mies uitschakelen loggerscript IVM problemen met head en body (knees & Toes).
+2-12-2013 David: Zoeken op plaatsnaam met provincie erbij
 */
 if(isset($_POST["zoeken"])){
 	//Hier word het ip adres opgevraagt
@@ -102,6 +103,34 @@ if(!isset($alert)){
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <!--Dit zorgt roept alle autocomplete functies op-->
+	
+	<!-- Dit CSS bestand is specifiek voor de jQuery UI onderdelen -->
+	<link href="scripts/jquery/Aristo.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Eerst moet jQuery worden geladen -->
+	<script type="text/javascript" src="scripts/jquery/jquery-1.8.2.js"></script>
+
+	<!-- Dan moet de jQuery UI worden geladen, deze bevat de autocomplete code -->
+	<script type="text/javascript" src="scripts/jquery/jquery-ui-1.9.0.custom.min.js"></script>
+
+	<!-- nu moeten we jQuery vertellen dat we het formulierveld willen gebruiken voor autocomplete -->
+	<script type="text/javascript">
+
+	// start deze jQuery code als het document geladen is ("document ready")
+	$(document).ready(function() 
+	{
+		// activeer autocomplete voor het veld met ID "stad"
+		$("#stad").autocomplete({
+			
+			// geef aan welk bestand als bron voor de lijst dient
+			source: "scripts/citylist.php",
+			
+			// geef aan vanf hoeveel ingetypte letters de autocomplete actief moet worden
+			minLength: 2
+		});
+	});
+	</script>
 		
 	</head>
     </head>
@@ -157,7 +186,9 @@ if(!isset($alert)){
                                         <option value="achternaam">Achternaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
+                                        <input name="stad" id="stad" type="text" /></form>
                                     </select>
+                                    <form action="" method="post" name="form1">
                                 </td>
                                 <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht" class=" <?php print $geslacht ?>_border_box"/></td>
                                 <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button <?php print $geslacht ?>_button" />
@@ -205,7 +236,7 @@ if(!isset($alert)){
             
             <!-- CONTACT -->
             <div class="kaartjes">
-            	<div id="contact"  class="<?php print $geslacht ?>_border">
+            	<div id="contact" class="<?php print $geslacht ?>_border">
             		<div class="wrapper">
                     	<p>
                         	<h1 class="<?php print $geslacht ?>_tekst">Contactformulier</h1>

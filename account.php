@@ -35,7 +35,7 @@ if(isset($_POST["update"])){
 //ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
 if(!isset($alert)){
 	$alert="Welkom op de account pagina";
-	$class = "normaal";
+	$class = $geslacht."_border";
 }
 ?>
 
@@ -51,7 +51,7 @@ if(!isset($alert)){
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
-    <?php var_dump($_POST);?>
+    <?php var_dump($_POST); ?>
     <body>
     	<div id="container"> 
     	  	<!-- MENU -->
@@ -137,8 +137,8 @@ if(!isset($alert)){
             		<div class="wrapper">
                     	<p class="right">
 								<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
-								<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" /><br/>
-								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" />
+								<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/><br/>
+								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
 						<p>
                         	<h1 class="<?php print $geslacht ?>_tekst">Gegevens</h1>
                             <h2>Vul informatie hieronder aan, leeg gelaten velden worden niet bijgewerkt</h2>
@@ -158,9 +158,6 @@ if(!isset($alert)){
                                     </tr>
 									<tr>
                                         <td><input name="geboortedatum" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" /></td>
-                                    </tr>
-									<tr>
-                                        <td><input name="email" type="text" placeholder="Email <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" /></td>
                                     </tr>
 									<tr>
                                         <td><input name="geslacht" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" /></td>

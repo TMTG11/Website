@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Voorbeeld autocomplete</title>
+	
+	<!-- Dit CSS bestand is specifiek voor de jQuery UI onderdelen -->
+	<link href="Aristo.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Eerst moet jQuery worden geladen -->
+	<script type="text/javascript" src="jquery-1.8.2.js"></script>
+
+	<!-- Dan moet de jQuery UI worden geladen, deze bevat de autocomplete code -->
+	<script type="text/javascript" src="jquery-ui-1.9.0.custom.min.js"></script>
+
+	<!-- nu moeten we jQuery vertellen dat we het formulierveld willen gebruiken voor autocomplete -->
+	<script type="text/javascript">
+
+	// start deze jQuery code als het document geladen is ("document ready")
+	$(document).ready(function() 
+	{
+		// activeer autocomplete voor het veld met ID "stad"
+		$("#stad").autocomplete({
+			
+			// geef aan welk bestand als bron voor de lijst dient
+			source: "citylist.php",
+			
+			// geef aan vanf hoeveel ingetypte letters de autocomplete actief moet worden
+			minLength: 2
+		});
+	});
+	
+	</script>
+</head>
+
+<body>
+
+<p>Typ minimaal twee letters van een plaatsnaam:</p>
+
+<form action="" method="post" name="form1">
+	<input name="stad" id="stad" type="text" />
+</form>
+
+</body>
+</html>

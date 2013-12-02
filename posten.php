@@ -24,7 +24,7 @@ $array = mysql_fetch_array($opdracht);
 
 //ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
 if(!isset($alert)){
-	$alert="Welkom op de aanmaak pagina";
+	$alert="Welkom op de post pagina, u kunt op deze pagina baby's toevoegen aan de website. Let op dat uw baby niet gelijk zichtbaar is, maar moet goedgekeurd worden door admins.";
 	$class = "normaal";
 }
 ?>
@@ -39,6 +39,35 @@ if(!isset($alert)){
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        
+        <!-- Dit zorgt voor het zoeken op plaatsnamen met Autocomplete!-->
+        <!-- Dit CSS bestand is specifiek voor de jQuery UI onderdelen -->
+	<link href="scripts/jquery/Aristo.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Eerst moet jQuery worden geladen -->
+	<script type="text/javascript" src="scripts/jquery/jquery-1.8.2.js"></script>
+
+	<!-- Dan moet de jQuery UI worden geladen, deze bevat de autocomplete code -->
+	<script type="text/javascript" src="scripts/jquery/jquery-ui-1.9.0.custom.min.js"></script>
+
+	<!-- nu moeten we jQuery vertellen dat we het formulierveld willen gebruiken voor autocomplete -->
+	<script type="text/javascript">
+
+	// start deze jQuery code als het document geladen is ("document ready")
+	$(document).ready(function() 
+	{
+		// activeer autocomplete voor het veld met ID "stad"
+		$("#stad").autocomplete({
+			
+			// geef aan welk bestand als bron voor de lijst dient
+			source: "scripts/citylist.php",
+			
+			// geef aan vanf hoeveel ingetypte letters de autocomplete actief moet worden
+			minLength: 2
+		});
+	});
+	
+	</script>
     </head>
     
     <body>
@@ -87,21 +116,20 @@ if(!isset($alert)){
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form>
+                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
                                     <select name="search">
                                         <option value="voornaam">Voornaam</option>
                                         <option value="achternaam">Achternaam</option>
-                                        <option value="roepnaam">Roepnaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
-                                        <option value="geslacht">Geslacht</option>
                                     </select>
                                 </td>
-                                <td width="540"><input name="" type="text" placeholder="zoekopdracht"/></td>
-                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" /></td>
+                                <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht"/></td>
+                                <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" />
+                                </td>
                             </tr>
                         </table>
                     </form>
@@ -128,8 +156,8 @@ if(!isset($alert)){
             		<div class="wrapper">
                     	<p class="right">
 								<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
-								<input name="zoeken" type="submit" value="Account pagina" class="button" /><br/>
-								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button" />
+								<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/><br/>
+								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
 						<p>
                         	<h1>Geboorte Kaartje</h1>
                             <h2>Vul de onderstaande velden in om een kaartje te maken.</h2>
@@ -142,19 +170,19 @@ if(!isset($alert)){
                                         <td><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="telefoon" type="text" placeholder="Woonplaats <?php if(isset($array["Woonplaats"])){print(" : ".$array["Woonplaats"]);}?>" required/></td>
+                                        <td><input name="woonplaats" id="stad" type="text" placeholder="Woonplaats" /> </td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Provincie <?php if(isset($array["Provincie"])){print(" : ".$array["Provincie"]);}?>" required/></td>
+                                        <td><input name="provincie" id="provincie" type="text" placeholder="Provincie" /></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" required/></td>
+                                        <td><input name="gebooredatum" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" required/></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Email <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
+                                        <td><input name="email" type="text" placeholder="Email <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
                                     </tr>
 									<tr>
-                                        <td><input name="telefoon" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" required/></td>
+                                        <td><input name="geslacht" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" required/></td>
                                     </tr>
                                     <tr>
                                         <td><textarea name="bericht" cols=25 rows="6" maxlength="750" required placeholder="Uw bericht...<?php if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
