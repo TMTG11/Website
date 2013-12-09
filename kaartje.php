@@ -96,7 +96,8 @@ if(!isset($alert)){
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   		<title>Over ons | Babyberichten.nl</title>
+    	<?php $array_kaartjeid = kaartjeid(); ?>
+   		<title><?php print($array_kaartjeid["naam"]) . " "; print($array_kaartjeid["tussenvoegsel"]) . " "; print($array_kaartjeid["achternaam"]);?> | Babyberichten.nl</title>
         
         <link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
 		<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
@@ -136,6 +137,17 @@ if(!isset($alert)){
     </head>
     
     <body>
+    	<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+
     	<div id="container"> 
     	  	<!-- MENU -->
         	<div id="menu" class="<?php print $geslacht ?>_border_top">
@@ -200,7 +212,6 @@ if(!isset($alert)){
             <!-- KAARTJES -->
             <div class="kaartjesnummer3">
             	<div class="wrapper">
-					<?php $array_kaartjeid = kaartjeid(); ?>
                 	<h4><?php print($array_kaartjeid["naam"]) . " "; print($array_kaartjeid["tussenvoegsel"]) . " "; print($array_kaartjeid["achternaam"]);?></h4>
                     <div id="contact" class="<?php print $array_kaartjeid["geslacht"]; ?>_border">
 					
@@ -211,10 +222,14 @@ if(!isset($alert)){
 							
 							<h2><span class="bold"><br/>Tekst:</span></h2>
 							<h2><?php print($array_kaartjeid["tekst"]); ?></h2>
-							<img src="img/background_header.png" class="photo" />
-							<a href="#"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_facebook.png" class="facebook" /></a>
+							<img src="/database/upload/babies/<?php print $array_kaartjeid["afbeelding"]; ?>" class="photo" />
+							
+						
+							<a target="_blank" href="http://www.facebook.com/share.php?u=http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartjeid["id"]); ?>"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_facebook.png" class="facebook" /></a>
+							
+							
 							<a target="_blank" href="https://twitter.com/intent/tweet?source=webclient&text=Ons%20kind%20<?php print($array_kaartjeid["naam"]); ?>%20is%20geboren.%20Bekijk%20het%20geboortekaartje%20hier:%20http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartjeid["id"]); ?>%20%23schoolopdracht"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_twitter.png" class="twitter" /></a>
-							<a href="#"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_google.png" class="google" /></a>
+							<a target="_blank" href="https://plus.google.com/share?url=http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartjeid["id"]); ?>"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_google.png" class="google" /></a>
                     </div> <!-- Einde post_header -->
                     <!-- Einde post_header -->
             	</div> <!-- Einde wrapper -->

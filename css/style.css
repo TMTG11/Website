@@ -364,6 +364,7 @@ select::-ms-expand {
 	position: absolute;
 	top: 25px;
 	right: 25px;
+	border: #999 solid thin;
 }
 
 .kaartjesnummer3 #contact .facebook {
