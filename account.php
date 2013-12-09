@@ -51,7 +51,7 @@ if(!isset($alert)){
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
-    <?php var_dump($_POST); ?>
+    <?php /*var_dump($_POST);*/ ?>
     <body>
     	<div id="container"> 
     	  	<!-- MENU -->
@@ -90,7 +90,7 @@ if(!isset($alert)){
                             <h2><?php print($array_kaartje["tekst"]); ?></h2>
                             <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
+                    	<a href="http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartje["id"]); ?>" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->

@@ -213,7 +213,7 @@ if(!isset($alert)){
 							<h2><?php print($array_kaartjeid["tekst"]); ?></h2>
 							<img src="img/background_header.png" class="photo" />
 							<a href="#"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_facebook.png" class="facebook" /></a>
-							<a href="#"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_twitter.png" class="twitter" /></a>
+							<a target="_blank" href="https://twitter.com/intent/tweet?source=webclient&text=Ons%20kind%20<?php print($array_kaartjeid["naam"]); ?>%20is%20geboren.%20Bekijk%20het%20geboortekaartje%20hier:%20http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartjeid["id"]); ?>%20%23schoolopdracht"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_twitter.png" class="twitter" /></a>
 							<a href="#"><img src="img/social/<?php print $array_kaartjeid["geslacht"]; ?>_google.png" class="google" /></a>
                     </div> <!-- Einde post_header -->
                     <!-- Einde post_header -->
