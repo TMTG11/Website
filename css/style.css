@@ -93,6 +93,9 @@ li a:hover {
 	font-size: 12px;
 	font-weight: 600;
 	border: #89cff0 solid thin;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 .button:hover {
@@ -163,7 +166,11 @@ li a:hover {
 	padding-left: 20px;
 }
 
-#search table tr td select {
+input:focus, select:focus, textarea:focus {
+	outline: none;
+}
+
+#search table tr td select, .kaartjesnummer4 table tr td select {
 	width: 100%;
 	padding-top: 16px;
 	padding-bottom: 16px;
@@ -186,13 +193,19 @@ li a:hover {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	-moz-appearance: none;
 	text-indent: 0.01px;
 	text-overflow: '';
 }
 
- select::-ms-expand {
- display: none;
+.kaartjesnummer4 table tr td select {
+	width: 200px;
+	float: right;
+	margin-right: 29px;
+	border-radius: 5px;
+}
+
+select::-ms-expand {
+	display: none;
 }
 
 #search table tr td .button {
@@ -333,6 +346,53 @@ li a:hover {
 	width: 940px;
 	margin: auto;
 	border-left: 10px solid #89cff0;
+	position: relative;
+}
+
+.kaartjesnummer3 #contact {
+	width: 880px;
+	min-height: 370px !important;
+	margin-top: 50px;
+	padding: 25px;
+	height: auto;
+}
+
+.kaartjesnummer3 #contact .photo {
+	width: 300px;
+	height: 300px;
+	float: right;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+}
+
+.kaartjesnummer3 #contact .facebook {
+	width: 40px;
+	bottom: 25px;
+	right: 25px;
+	margin-left: 10px;
+	position: absolute;
+}
+
+.kaartjesnummer3 #contact .twitter {
+	width: 40px;
+	bottom: 25px;
+	right: 90px;
+	margin-left: 10px;
+	position: absolute;
+}
+
+.kaartjesnummer3 #contact .google {
+	width: 40px;
+	bottom: 25px;
+	right: 155px;
+	margin-left: 10px;
+	position: absolute;
+}
+
+.kaartjesnummer3 #contact h2 {
+	padding-top: 0px !important;
+	width: 500px;
 }
 
 .kaartjes #contact .wrapper {
@@ -386,6 +446,16 @@ li a:hover {
 
 /*BABIES */
 
+.kaartjes #contact .wrapper img {
+	width: 400px;
+	height: 100px;
+	margin-top: 20px;
+}
+
+.bold {
+	font-weight: 700;
+}
+
 .kaartjesnummer1 {
 	width: 100%;
 	min-width: 1040px;
@@ -416,6 +486,7 @@ li a:hover {
 	color: #89cff0;
 	font-size: 40px;
 	margin-left: 20px;
+	line-height: 0px;
 }
 
 .kaartjesnummer2 #post_header {
@@ -447,6 +518,37 @@ li a:hover {
 }
 
 .kaartjesnummer3 #post_header h2 {
+	color: #3c3b3d;
+}
+
+.kaartjesnummer4 {
+	width: 100%;
+	min-width: 1040px;
+	height: auto;
+	background-color: #3c3b3d;
+	padding-top: 50px;
+	overflow: hidden;
+	position: relative;
+}
+
+.kaartjesnummer4 .wrapper h4 {
+	font-weight: 900;
+	color: #fff;
+	font-size: 40px;
+	margin-left: 20px;
+	margin-bottom: 50px;
+}
+
+.kaartjesnummer4 #post_header {
+	background-color: #fff;
+	margin-top: 0px;
+	margin-bottom: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
+	float: left;
+}
+
+.kaartjesnummer4 #post_header h2 {
 	color: #3c3b3d;
 }
 
