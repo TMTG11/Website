@@ -3,6 +3,8 @@
 	require_once('scripts/inlogcheck.php');
 	require_once('scripts/kaartjes.php');
 	
+	$geslacht = kleuren();
+	
 /*
 Changelog
 25-11-2013 Mies Aanmaak Account.php Eerste scripts. Uitlogknop
@@ -25,7 +27,7 @@ $array = mysql_fetch_array($opdracht);
 //ALS ER GEEN ALERTS ZIJN WORD DE VOLGENDE TEKST WEERGEGEVEN
 if(!isset($alert)){
 	$alert="Welkom op de post pagina, u kunt op deze pagina baby's toevoegen aan de website. Let op dat uw baby niet gelijk zichtbaar is, maar moet goedgekeurd worden door admins.";
-	$class = "normaal";
+	$class = $geslacht."_border";
 }
 ?>
 <!DOCTYPE html>
@@ -71,7 +73,7 @@ if(!isset($alert)){
 	<body>
 <div id="container"> 
       <!-- MENU -->
-      <div id="menu">
+      <div id="menu" class="<?php print $geslacht ?>_border_top">
     <div class="wrapper"> 
           <!-- LOGO -->
           <div id="logo"> <a href="index.php"><img src="<?php print(logo("link")); ?>" width="256" height="63" alt="Logo" /></a> </div>
@@ -89,7 +91,7 @@ if(!isset($alert)){
             </ul>
       </div>
           <!-- Einde menu_items -->
-          <div id="menu_button"> <a href="<?php print(registreren_button("link")); ?>" class="button"><?php print(registreren_button("tekst")); ?></a> </div>
+          <div id="menu_button"> <a href="<?php print(registreren_button("link")); ?>" class="button <?php print $geslacht ?>_button"><?php print(registreren_button("tekst")); ?></a> </div>
           <!-- Einde menu_button --> 
         </div>
     <!-- Einde wrapper --> 
@@ -114,27 +116,28 @@ if(!isset($alert)){
   </div>
       <!-- Einde header --> 
       
-      <!-- SEARCH -->
-      <div id="search">
-    <div class="wrapper">
-          <form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
-        <table border="0" width="100%">
-              <tr>
-            <td width="250"><select name="search">
-                <option value="voornaam">Voornaam</option>
-                <option value="achternaam">Achternaam</option>
-                <option value="geboortedatum">Geboortedatum</option>
-                <option value="geboorteplaats">Geboorteplaats</option>
-              </select></td>
-            <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht"/></td>
-            <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button" /></td>
-          </tr>
-            </table>
-      </form>
-        </div>
-    <!-- Einde wrapper --> 
-  </div>
-      <!-- Einde search --> 
+	<!-- SEARCH -->
+	<div id="search">
+		<div class="wrapper">
+	    	<form id="form_zoek" class="form_zoek" method="post" action="allebabies.php">
+	        	<table border="0" width="100%">
+	            	<tr>
+	                	<td width="250">
+	                        <select name="search" class=" <?php print $geslacht ?>_select">
+	                            <option value="voornaam">Voornaam</option>
+	                            <option value="achternaam">Achternaam</option>
+	                            <option value="geboortedatum">Geboortedatum</option>
+	                            <option value="geboorteplaats">Geboorteplaats</option>
+	                        </select>
+	                    </td>
+	                    <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht" class=" <?php print $geslacht ?>_border_box"/></td>
+	                    <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button <?php print $geslacht ?>_button" />
+	                    </td>
+	                </tr>
+	            </table>
+	        </form>
+	    </div> <!-- Einde wrapper -->
+	    </div> <!-- Einde search -->
       
       <!-- MELDINGEN -->
       <div class="kaartjes padding_bottom">
@@ -154,7 +157,7 @@ if(!isset($alert)){
       
       <!-- CONTACT -->
       <div class="kaartjes">
-    <div id="account">
+    <div id="account" class="<?php print $geslacht ?>_border">
           <div class="wrapper">
         <p class="right">
               <input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/>
@@ -163,7 +166,7 @@ if(!isset($alert)){
               <br/>
               <input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
             <p>
-            <h1>Geboorte Kaartje</h1>
+            <h1 class="<?php print $geslacht ?>_tekst">Geboorte Kaartje</h1>
         <h2>Vul de onderstaande velden in om een kaartje te maken.</h2>
         <form method="post" action="postenverwerk.php" enctype="multipart/form-data">
               <table>
@@ -220,7 +223,7 @@ if(!isset($alert)){
                   <td>Uw persoonlijke tekst bij uw babybericht:<textarea name="Persoonlijketekst" cols=25 rows="6" maxlength="750" placeholder="Uw tekst bij uw babybericht..."></textarea></td>
                 </tr>
             <tr>
-                  <td><input name="zoeken" type="submit" value="Verzenden" class="button" /></td>
+                  <td><input name="zoeken" type="submit" value="Verzenden" class="button <?php print $geslacht ?>_button" /></td>
                 </tr>
           </table>
             </form>
@@ -241,7 +244,7 @@ if(!isset($alert)){
           <div class="blok">
             <p>
             
-        <h1>Index pagina</h1>
+        <h1 class="<?php print $geslacht ?>_tekst">Index pagina</h1>
         <h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
         </p>
       </div>
@@ -249,7 +252,7 @@ if(!isset($alert)){
           <hr class="line">
           <div class="blok right">
         <p>
-            <h1>Index pagina</h1>
+            <h1 class="<?php print $geslacht ?>_tekst">Index pagina</h1>
         <h2>Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. Er zijn vele variaties van passages van Lorem Ipsum beschikbaar maar het. passages van Lorem Ipsum beschikbaar maar het.</h2>
         </p>
       </div>
@@ -264,7 +267,7 @@ if(!isset($alert)){
       <!-- Einde content --> 
       
       <!-- FOOTER -->
-      <div id="footer">
+      <div id="footer" class="<?php print $geslacht ?>_achtergrond">
     <div class="wrapper">
           <div class="right">
         <p> <a href="https://www.facebook.com/sharer/sharer.php?u=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/facebook_white.png" width="40" /></a> <a href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/google_white.png" width="40"/></a> <a href="http://twitter.com/home?status=http://TMTG11.ict-lab.nl/website" target="_blank"><img src="img/social/twitter_white.png" width="40"/></a> </p>
