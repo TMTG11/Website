@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Nieuwsbrief</title>
+</head>
+
+<!-- Scriptje voor favicon !-->
+
+<link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/> 
+        
+<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+
+
+<!-- Hier maakt de gebruiker een keuze of hij de nieuwsbrief wil ontvangen, of wil uitschrijven. !-->
+<form action="nieuwsbriefverwerk.php" method="get">
+Wilt u onze nieuwsbrief ontvangen? U krijgt maximaal 1 email per dag met de nieuwe baby's van uw regio naar keuze.<br /><br />
+<button name="ja" type="submit" value="ja">Ja</button><br /><br />
+Wanneer u op ja drukt word u automatisch naar het keuzemenu geleid met de regio's.<br /><br />
+</form>
+<form action="nieuwsbriefuitschrijvenverwerk.php" method="get">
+<button name="nee" type="submit" value="nee">Nee</button><br /><br />
+Als u de nieuwsbrief niet langer wilt onvangen drukt u op nee. U word dan uitgeschreven voor de nieuwsbrieven van alle regio's.
+</form>
+<body>
+</body>
+</html>
