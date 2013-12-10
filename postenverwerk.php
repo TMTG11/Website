@@ -37,7 +37,7 @@ $temp = $bestand['tmp_name'];
 //Hier word het in de tabel gezet
 $opdracht = "INSERT INTO $tabelnaam (GebruikersID,Voornaam,Tussenvoegsel,Achternaam,Geboortegewicht,Geboortedatum,Geboorteplaats,Geslacht,VrijeTekst,Afbeeldingslocatie,Provincie,Bevestigd ) values('$id','$voornaam','$tussen','$achternaam','$gewicht','$geboortedatum','$geboorteplaats','$geslacht','$text','$afbeeldingnaam','$provincie','$bevestigd')";
 if(mysql_query($opdracht)){
-	echo "Het aanmelden is gelukt!";
+	echo "Het posten van uw geboortekaartje is gelukt!";
 }else{
 	echo "Het aanmelden is niet gelukt, probeer het opnieuw.".mysql_error();
 	echo $opdracht;
@@ -47,7 +47,7 @@ $opdracht2 = mysql_query("SELECT PostID FROM $tabelnaam WHERE VrijeTekst = '$tex
 $result2 = mysql_fetch_array($opdracht2);
 
 ///Afbeelding
-if(move_uploaded_file($bestand['tmp_name'], "../database/upload/babies".$afbeeldingnaam)){
+if(move_uploaded_file($bestand['tmp_name'], "../database/upload/babies/".$afbeeldingnaam)){
 	header('Location: kaartje.php?id='.$result2["PostID"]);
 }else{
 	echo "De afbeelding is niet verplaatst!";

@@ -35,8 +35,10 @@ if(!isset($alert)){
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Posten | Babyberichten.nl</title>
-	<link rel="icon" href="img/logo/favicon.ico" type="img/logo/x-icon"/>
-	<link rel="shortcut icon" type="image/ico" href="img/logo/favicon.ico"/>
+	
+	<link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
+	<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
+	
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 
@@ -109,7 +111,7 @@ if(!isset($alert)){
         <h2><?php print($array_kaartje["tekst"]); ?></h2>
         <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
         </p>
-        <a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a> </div>
+        <a href="http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartje["id"]); ?>" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a> </div>
           <!-- Einde post_header --> 
         </div>
     <!-- Einde wrapper --> 
@@ -155,85 +157,84 @@ if(!isset($alert)){
   </div>
       <!-- Einde kaartjes --> 
       
-      <!-- CONTACT -->
-      <div class="kaartjes">
-    <div id="account" class="<?php print $geslacht ?>_border">
-          <div class="wrapper">
-        <p class="right">
-              <input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/>
-              <br/>
-              <input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/>
-              <br/>
-              <input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
-            <p>
-            <h1 class="<?php print $geslacht ?>_tekst">Geboorte Kaartje</h1>
-        <h2>Vul de onderstaande velden in om een kaartje te maken.</h2>
-        <form method="post" action="postenverwerk.php" enctype="multipart/form-data">
-              <table>
-            <tr>
-                  <td>Naam:<input name="Voornaam" type="text"  required/></td>
-                </tr>
-            <tr>
-            <tr>
-                  <td>Tussenvoegsel:<input name="Tussenvoegsel" type="text"  required/></td>
-                </tr>
-            <tr>
-            <tr>
-                  <td>Achternaam:<input name="Achternaam" type="text"  required/></td>
-                </tr>
-            <tr>
-            <tr>
-                  <td>Geboortegewicht:<input name="Gewicht" type="text"  placeholder="In Gram"required/></td>
-                </tr>
-            <tr>
-                  <td>Email adres:<input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
-                </tr>
-            <tr>
-                  <td>Geboorteplaats:<input name="Geboorteplaats" id="stad" type="text" placeholder="Geboorteplaats"  required/></td>
-                </tr>
-            <tr>
-                  <td>Provincie:<select name="provincielist">
-                      <option value="">Selecteer uw provincie</option>
-                      <option value="Noord-Holland">Noord-Holland</option>
-                      <option value="Zuid-Holland">Zuid-Holland</option>
-                      <option value="Utrecht">Utrecht</option>
-                      <option value="Flevoland">Flevoland</option>
-                      <option value="Groningen">Groningen</option>
-                      <option value="Friesland">Friesland</option>
-                      <option value="Drenthe">Drenthe</option>
-                      <option value="Overijsel">Overijssel</option>
-                      <option value="Gelderland">Gelderland</option>
-                      <option value="Noord-Brabant">Noord-Brabant</option>
-                      <option value="Limburg">Limburg</option>
-                      <option value="Zeeland">Zeeland</option>
-                    </select></td>
-                </tr>
-            <tr>
-                  <td>Geboortedatum<INPUT name="geboortedatum" type="date" id="geboortedatum" required></td>
-                </tr>
-            <tr>
-                  <td>Geslacht<select name="Geslacht">
-                      <option value="M">Man</option>
-                      <option value="V">Vrouw</option></td>
-                </tr>
-            <tr>
-                  <td>Foto:<INPUT name="file" type="file" name="file" required/></td>
-                </tr>
-                <tr>
-                  <td>Uw persoonlijke tekst bij uw babybericht:<textarea name="Persoonlijketekst" cols=25 rows="6" maxlength="750" placeholder="Uw tekst bij uw babybericht..."></textarea></td>
-                </tr>
-            <tr>
-                  <td><input name="zoeken" type="submit" value="Verzenden" class="button <?php print $geslacht ?>_button" /></td>
-                </tr>
-          </table>
-            </form>
-        </p>
-      </div>
-          <!-- Einde wrapper --> 
-        </div>
-    <!-- Einde contact --> 
-  </div>
-      <!-- Einde kaartjes --> 
+	<!-- CONTACT -->
+	<div class="kaartjes">
+		<div id="account" class="<?php print $geslacht ?>_border">
+			<div class="wrapper">
+				<span class="right">
+					<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/>
+						<br/>
+					<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/>
+						<br/>
+					<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
+				</span>
+				
+				<h1 class="<?php print $geslacht ?>_tekst">Geboorte Kaartje</h1>
+				<h2>Vul de onderstaande velden in om een kaartje te maken.</h2>
+						
+				<form method="post" action="postenverwerk.php" enctype="multipart/form-data">
+					<table>
+						<tr>
+							<td><label>Voornaam:</label><input name="Voornaam" type="text"  required/></td>
+						</tr>
+						<tr>
+							<td><label>Tussenvoegsel:</label><input name="Tussenvoegsel" type="text"  /></td>
+						</tr>
+						<tr>
+							<td><label>Achternaam:</label><input name="Achternaam" type="text"  required/></td>
+						</tr>
+						<tr>
+							<td><label>Geboortegewicht:</label><input name="Gewicht" type="text"  placeholder="In Gram"required/></td>
+						</tr>
+						<tr>
+							<td><label>Email adres:</label><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
+						</tr>
+						<tr>
+							<td><label>Geboorteplaats:</label><input name="Geboorteplaats" id="stad" type="text" placeholder="Geboorteplaats"  required/></td>
+						</tr>
+						<tr>
+							<td>
+								<label>Provincie:</label>
+								<select name="provincielist">
+									<option value="">Selecteer uw provincie</option>
+									<option value="Noord-Holland">Noord-Holland</option>
+									<option value="Zuid-Holland">Zuid-Holland</option>
+									<option value="Utrecht">Utrecht</option>
+									<option value="Flevoland">Flevoland</option>
+									<option value="Groningen">Groningen</option>
+									<option value="Friesland">Friesland</option>
+									<option value="Drenthe">Drenthe</option>
+									<option value="Overijsel">Overijssel</option>
+									<option value="Gelderland">Gelderland</option>
+									<option value="Noord-Brabant">Noord-Brabant</option>
+									<option value="Limburg">Limburg</option>
+									<option value="Zeeland">Zeeland</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Geboortedatum:</label><INPUT name="geboortedatum" type="date" id="geboortedatum" required></td>
+						</tr>
+						<tr>
+							<td><label>Geslacht:</label><select name="Geslacht">
+								<option value="M">Man</option>
+								<option value="V">Vrouw</option>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Foto:</label><INPUT name="file" type="file" name="file" required/></td>
+						</tr>
+						<tr>
+							<td><label>Uw persoonlijke tekst bij uw babybericht:</label><textarea name="Persoonlijketekst" cols=25 rows="6" maxlength="750" placeholder="Uw tekst bij uw babybericht..."></textarea></td>
+						</tr>
+						<tr>
+							<td><input name="zoeken" type="submit" value="Verzenden" class="button <?php print $geslacht ?>_button" /></td>
+						</tr>
+					</table>
+				</form>
+			</div> <!-- Einde wrapper --> 
+        </div> <!-- Einde contact --> 
+  </div> <!-- Einde kaartjes --> 
       
       <!-- CONTENT -->
       <div class="content">

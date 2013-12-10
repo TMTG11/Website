@@ -169,7 +169,7 @@ if(!isset($alert)){
                             <h2><?php print($array_kaartje["tekst"]); ?></h2>
                             <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
                     	</p>
-                    	<a href="#" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
+                    	<a href="http://tmtg11.ict-lab.nl/website/kaartje.php?id=<?php print($array_kaartje["id"]); ?>" class="button right <?php  print($array_kaartje["geslacht"]); ?>_button">Kaartje bekijken</a>
                     </div> <!-- Einde post_header --> 
                 </div> <!-- Einde wrapper -->
             </div> <!-- Einde header -->
@@ -177,7 +177,7 @@ if(!isset($alert)){
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
+                	<form id="form_zoek" class="form_zoek" method="post" action="allebabies.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
@@ -186,9 +186,7 @@ if(!isset($alert)){
                                         <option value="achternaam">Achternaam</option>
                                         <option value="geboortedatum">Geboortedatum</option>
                                         <option value="geboorteplaats">Geboorteplaats</option>
-                                        <input name="stad" id="stad" type="text" /></form>
                                     </select>
-                                    <form action="" method="post" name="form1">
                                 </td>
                                 <td width="540"><input name="zoekopdracht" type="text" placeholder="zoekopdracht" class=" <?php print $geslacht ?>_border_box"/></td>
                                 <td width="150"><input name="zoeken" type="submit" value="zoeken" class="button <?php print $geslacht ?>_button" />

@@ -43,13 +43,42 @@ if(!isset($alert)){
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   		<title>Inloggen | Babyberichten.nl</title>
+   		<title><?php print(inloggen_button("tekst")); ?> | Babyberichten.nl</title>
         
         <link rel="icon" href="<?php print(favicon("link")); ?>" type="img/logo/x-icon"/> 
 		<link rel="shortcut icon" type="image/ico" href="<?php print(favicon("link")); ?>"/>
         
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        
+        <!-- Dit zorgt voor het zoeken op plaatsnamen met Autocomplete!-->
+	<!-- Dit CSS bestand is specifiek voor de jQuery UI onderdelen -->
+	<link href="scripts/jquery/Aristo.css" rel="stylesheet" type="text/css" />
+
+	<!-- Eerst moet jQuery worden geladen -->
+	<script type="text/javascript" src="scripts/jquery/jquery-1.8.2.js"></script>
+
+	<!-- Dan moet de jQuery UI worden geladen, deze bevat de autocomplete code -->
+	<script type="text/javascript" src="scripts/jquery/jquery-ui-1.9.0.custom.min.js"></script>
+
+	<!-- nu moeten we jQuery vertellen dat we het formulierveld willen gebruiken voor autocomplete -->
+	<script type="text/javascript">
+
+	// start deze jQuery code als het document geladen is ("document ready")
+	$(document).ready(function() 
+	{
+		// activeer autocomplete voor het veld met ID "stad"
+		$("#stad").autocomplete({
+			
+			// geef aan welk bestand als bron voor de lijst dient
+			source: "scripts/citylist.php",
+			
+			// geef aan vanf hoeveel ingetypte letters de autocomplete actief moet worden
+			minLength: 2
+		});
+	});
+	
+	</script>
     </head>
     <?php /*var_dump($_POST);*/ ?>
     <body>
@@ -98,7 +127,7 @@ if(!isset($alert)){
             <!-- SEARCH -->
             <div id="search">
             	<div class="wrapper">
-                	<form id="form_zoek" class="form_zoek" method="post" action="zoeken.php">
+                	<form id="form_zoek" class="form_zoek" method="post" action="allebabies.php">
                     	<table border="0" width="100%">
                         	<tr>
                             	<td width="250">
@@ -135,42 +164,69 @@ if(!isset($alert)){
             <div class="kaartjes">
             	<div id="account" class="<?php print $geslacht ?>_border">
             		<div class="wrapper">
-                    	<p class="right">
+                    	<span class="right">
 								<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
 								<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/><br/>
 								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
-						<p>
+						</span>
+                        
                         	<h1 class="<?php print $geslacht ?>_tekst">Gegevens</h1>
-                            <h2>Vul informatie hieronder aan, leeg gelaten velden worden niet bijgewerkt</h2>
-                            <form method="post" action="account.php">
+                            <h2>Vul informatie hieronder aan, LET OP, alle velden moeten ingevuld worden:</h2>
+                           
+                            <form method="post" action="accountverwerk.php">
                             	<table>
                                 	<tr>
-                                        <td><input name="naam" type="text" placeholder="Naam <?php if(isset($array["Voornaam"])){print(" : ".$array["Voornaam"]." ".$array["Tussenvoegsel"]." ".$array["Achternaam"]);}?>" /></td>
+                                       <td><label>Voornaam:</label><input name="voornaam" type="text" value="<?php if(isset($array["Voornaam"])) { print($array["Voornaam"]); } else { print "Voornaam"; } ?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" /></td>
+                                        <td><label>Tussenvoegsel:</label><input name="tussen" type="text" value="<?php if(isset($array["Voornaam"])){print($array["Tussenvoegsel"]);}?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><input name="woonplaats" type="text" placeholder="Woonplaats <?php if(isset($array["Woonplaats"])){print(" : ".$array["Woonplaats"]);}?>" /></td>
-                                    </tr>
-									<tr>
-                                        <td><input name="provincie" type="text" placeholder="Provincie <?php if(isset($array["Provincie"])){print(" : ".$array["Provincie"]);}?>" /></td>
-                                    </tr>
-									<tr>
-                                        <td><input name="geboortedatum" type="text" placeholder="Geboortedatum <?php if(isset($array["Geboortedatum"])){print(" : ".$array["Geboortedatum"]);}?>" /></td>
-                                    </tr>
-									<tr>
-                                        <td><input name="geslacht" type="text" placeholder="Geslacht <?php if(isset($array["Geslacht"])){print(" : ".$array["Geslacht"]);}?>" /></td>
+                                        <td><label>Achternaam:</label><input name="achternaam" type="text" value="<?php if(isset($array["Voornaam"])){print($array["Achternaam"]);}?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><textarea name="bericht" cols=25 rows="6" maxlength="750"  placeholder="Uw bericht...<?php if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
+                                        <td><label>E-mail adres:</label><input name="email" type="text" value="<?php if(isset($array["Email"])){print($array["Email"]);}?>" /></td>
                                     </tr>
+                                    <tr>
+                                    	<td><label>Woonplaats:</label><input name="woonplaats" id="stad" type="text" value="<?php if(isset($array["Woonplaats"])){print($array["Woonplaats"]);}?>" /></td>
+                                    </tr>
+									<tr>
+                                        <td><label>Geboortedatum:</label> <input name="geboortedatum" type="date" value="<?php if(isset($array["Geboortedatum"])){print($array["Geboortedatum"]);}?>" /></td>
+                                    </tr>
+                                    <tr>
+										<td><label>Geslacht:</label>
+											<select name="geslacht" input name="geslacht">
+											<?php
+												if($array["Geslacht"] == "M") {
+													?>
+														<option value="M">Man</option>
+														<option value="V">Vrouw</option>
+													<?php
+												} else if($array["Geslacht"] == "V") {
+													?>
+														<option value="V">Vrouw</option>
+														<option value="M">Man</option>
+													<?php
+												} else {
+													?>
+														<option value="A">Selecteer een geslacht...</option>
+														<option value="M">Man</option>
+														<option value="V">Vrouw</option>
+													<?php
+												}
+											?>
+											</select>
+										</td>
+									</tr>
+                                    <!-- <tr>
+                                        <td><label>Vrije tekst:</label><textarea name="bericht" cols=25 rows="6" maxlength="750"  placeholder="Uw bericht...<?php// if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
+                                    </tr> -->
                                     <tr>
                                         <td><input name="update" type="submit" value="Update uw account" class="button <?php print $geslacht ?>_button" /></td>
                                     </tr>
                                 </table>
                             </form>
-                        </p>
+                            
                 	</div> <!-- Einde wrapper -->
                 </div> <!-- Einde contact -->
             </div> <!-- Einde kaartjes -->
