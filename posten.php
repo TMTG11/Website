@@ -175,28 +175,28 @@ if(!isset($alert)){
 				<form method="post" action="postenverwerk.php" enctype="multipart/form-data">
 					<table>
 						<tr>
-							<td><label>Voornaam:</label><input name="Voornaam" type="text"  required/></td>
+							<td><label>Voornaam:</label><input name="Voornaam" type="text" placeholder="Voornaam" required /></td>
 						</tr>
 						<tr>
-							<td><label>Tussenvoegsel:</label><input name="Tussenvoegsel" type="text"  /></td>
+                            <td><label>Tussenvoegsel:</label><input name="tussen" type="text" value="<?php if(isset($array["Tussenvoegsel"])) { print($array["Tussenvoegsel"]); } ?>" placeholder="<?php if(!isset($array["Tussenvoegsel"])) { print("Tussenvoegsel"); } ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Achternaam:</label><input name="achternaam" type="text" value="<?php if(isset($array["Achternaam"])) { print($array["Achternaam"]); } ?>" placeholder="<?php if(!isset($array["Achternaam"])) { print("Achternaam"); } ?>" required /></td>
+                        </tr>
+						<tr>
+							<td><label>Geboortegewicht:</label><input name="Gewicht" type="text"  placeholder="Bijvoorbeeld 2000 gram" required/></td>
 						</tr>
 						<tr>
-							<td><label>Achternaam:</label><input name="Achternaam" type="text"  required/></td>
+							<td><label>Email adres:</label><input name="email" type="text" value="<?php if(isset($array["Email"])) { print($array["Email"]); } ?>" placeholder="<?php if(!isset($array["Email"])) { print("E-mail"); } ?>" required /></td>
 						</tr>
 						<tr>
-							<td><label>Geboortegewicht:</label><input name="Gewicht" type="text"  placeholder="In Gram"required/></td>
-						</tr>
-						<tr>
-							<td><label>Email adres:</label><input name="email" type="text" placeholder="E-mail adres <?php if(isset($array["Email"])){print(" : ".$array["Email"]);}?>" required/></td>
-						</tr>
-						<tr>
-							<td><label>Geboorteplaats:</label><input name="Geboorteplaats" id="stad" type="text" placeholder="Geboorteplaats"  required/></td>
+							<td><label>Geboorteplaats:</label><input name="Geboorteplaats" id="stad" type="text" value="<?php if(isset($array["Woonplaats"])) { print($array["Woonplaats"]); } ?>" placeholder="<?php if(!isset($array["Woonplaats"])) { print("Woonplaats"); } ?>" required /></td>
 						</tr>
 						<tr>
 							<td>
 								<label>Provincie:</label>
 								<select name="provincielist">
-									<option value="">Selecteer uw provincie</option>
+									<?php if(isset($array["Provincie"])) { print ("<option value=" . $array["Provincie"] . ">" . $array["Provincie"] . "</option>"); } else { print("<option value=''>Selecteer uw provincie...</option>"); } ?>
 									<option value="Noord-Holland">Noord-Holland</option>
 									<option value="Zuid-Holland">Zuid-Holland</option>
 									<option value="Utrecht">Utrecht</option>
@@ -213,12 +213,12 @@ if(!isset($alert)){
 							</td>
 						</tr>
 						<tr>
-							<td><label>Geboortedatum:</label><INPUT name="geboortedatum" type="date" id="geboortedatum" required></td>
+							<td><label>Geboortedatum:</label><INPUT name="geboortedatum" type="date" id="geboortedatum" placeholder="<?php echo date("d-m-Y"); ?>" required></td>
 						</tr>
 						<tr>
 							<td><label>Geslacht:</label><select name="Geslacht">
-								<option value="M">Man</option>
-								<option value="V">Vrouw</option>
+								<option value="M">Zoon</option>
+								<option value="V">Dochter</option>
 							</td>
 						</tr>
 						<tr>

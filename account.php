@@ -114,7 +114,7 @@ if(!isset($alert)){
 					<?php $array_kaartje = laatste_kaartje(); ?>
                 	<div id="post_header" class="<?php print($array_kaartje["geslacht"]); ?>_border">
                     	<p>
-							<?php //Kaartje op de slider word gevuld?>
+							<!-- Kaartje op de slider word gevuld -->
                         	<h1 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["naam"]) . " "; print($array_kaartje["tussenvoegsel"]) . " "; print($array_kaartje["achternaam"]);?></h1>
                             <h2><?php print($array_kaartje["tekst"]); ?></h2>
                             <h3 class="<?php print($array_kaartje["geslacht"]); ?>_tekst"><?php print($array_kaartje["datum"]); ?></h3>
@@ -165,37 +165,62 @@ if(!isset($alert)){
             	<div id="account" class="<?php print $geslacht ?>_border">
             		<div class="wrapper">
                     	<span class="right">
-								<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/><br/>
-								<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/><br/>
-								<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
+							<input name="zoeken" type="submit" value="Uitloggen" class="button logout" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php?uitloggen=ja'"/>
+								<br/>
+							<input name="zoeken" type="submit" value="Account pagina" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/account.php'"/>
+								<br/>
+							<input name="zoeken" type="submit" value="Kaartje toevoegen" class="button <?php print $geslacht ?>_button" onClick="window.location='http://tmtg11.ict-lab.nl/website/posten.php'"/>
 						</span>
                         
                         	<h1 class="<?php print $geslacht ?>_tekst">Gegevens</h1>
-                            <h2>Vul informatie hieronder aan, LET OP, alle velden moeten ingevuld worden:</h2>
+                            <h2>Vul informatie hieronder aan:</h2>
                            
                             <form method="post" action="accountverwerk.php">
                             	<table>
                                 	<tr>
-                                       <td><label>Voornaam:</label><input name="voornaam" type="text" value="<?php if(isset($array["Voornaam"])) { print($array["Voornaam"]); } else { print "Voornaam"; } ?>" /></td>
+                                       <td><label>Voornaam:</label><input name="voornaam" type="text" value="<?php if(isset($array["Voornaam"])) { print($array["Voornaam"]); } ?>"  placeholder="<?php if(!isset($array["Voornaam"])) { print("Voornaam"); } ?>"  /></td>
                                     </tr>
                                     <tr>
-                                        <td><label>Tussenvoegsel:</label><input name="tussen" type="text" value="<?php if(isset($array["Voornaam"])){print($array["Tussenvoegsel"]);}?>" /></td>
+                                        <td><label>Tussenvoegsel:</label><input name="tussen" type="text" value="<?php if(isset($array["Tussenvoegsel"])) { print($array["Tussenvoegsel"]); } ?>" placeholder="<?php if(!isset($array["Tussenvoegsel"])) { print("Tussenvoegsel"); } ?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><label>Achternaam:</label><input name="achternaam" type="text" value="<?php if(isset($array["Voornaam"])){print($array["Achternaam"]);}?>" /></td>
+                                        <td><label>Achternaam:</label><input name="achternaam" type="text" value="<?php if(isset($array["Achternaam"])) { print($array["Achternaam"]); } ?>" placeholder="<?php if(!isset($array["Achternaam"])) { print("Achternaam"); } ?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><label>E-mail adres:</label><input name="email" type="text" value="<?php if(isset($array["Email"])){print($array["Email"]);}?>" /></td>
+                                        <td><label>E-mail adres:</label><input name="email" type="text" value="<?php if(isset($array["Email"])) { print($array["Email"]); } ?>" placeholder="<?php if(!isset($array["Email"])) { print("E-mail"); } ?>" /></td>
                                     </tr>
                                     <tr>
-                                    	<td><label>Woonplaats:</label><input name="woonplaats" id="stad" type="text" value="<?php if(isset($array["Woonplaats"])){print($array["Woonplaats"]);}?>" /></td>
+                                    	<td><label>Woonplaats:</label><input name="woonplaats" id="stad" type="text" value="<?php if(isset($array["Woonplaats"])) { print ($array["Woonplaats"]); } ?>" placeholder="<?php if(!isset($array["Woonplaats"])) { print("Woonplaats"); } ?>" /></td>
                                     </tr>
+                                    <tr>
+										<td>
+											<label>Provincie:</label>
+											<select name="provincielist">
+												<?php if(isset($array["Provincie"])) { print ("<option value=" . $array["Provincie"] . ">" . $array["Provincie"] . "</option>"); } else { print("<option value=''>Selecteer uw provincie...</option>"); } ?>
+												<option value="Noord-Holland">Noord-Holland</option>
+												<option value="Zuid-Holland">Zuid-Holland</option>
+												<option value="Utrecht">Utrecht</option>
+												<option value="Flevoland">Flevoland</option>
+												<option value="Groningen">Groningen</option>
+												<option value="Friesland">Friesland</option>
+												<option value="Drenthe">Drenthe</option>
+												<option value="Overijsel">Overijssel</option>
+												<option value="Gelderland">Gelderland</option>
+												<option value="Noord-Brabant">Noord-Brabant</option>
+												<option value="Limburg">Limburg</option>
+												<option value="Zeeland">Zeeland</option>
+											</select>
+										</td>
+									</tr>
 									<tr>
-                                        <td><label>Geboortedatum:</label> <input name="geboortedatum" type="date" value="<?php if(isset($array["Geboortedatum"])){print($array["Geboortedatum"]);}?>" /></td>
+                                        <td><label>Geboortedatum:</label> <input name="geboortedatum" type="date" value="<?php if(isset($array["Geboortedatum"])) { print($array["Geboortedatum"]); } ?>" placeholder="<?php if(!isset($array["Geboortedatum"])) { print("31/12/2013"); } ?>" /></td>
                                     </tr>
+                                    <tr>
+										<td><label>Foto:</label><INPUT name="file" type="file" name="file" required/></td>
+									</tr>
                                     <tr>
 										<td><label>Geslacht:</label>
-											<select name="geslacht" input name="geslacht">
+											<select name="geslacht">
 											<?php
 												if($array["Geslacht"] == "M") {
 													?>
@@ -218,9 +243,51 @@ if(!isset($alert)){
 											</select>
 										</td>
 									</tr>
-                                    <!-- <tr>
-                                        <td><label>Vrije tekst:</label><textarea name="bericht" cols=25 rows="6" maxlength="750"  placeholder="Uw bericht...<?php// if(isset($array["Vrije Tekst"])){print(" : ".$array["Vrije Tekst"]);}?>"></textarea></td>
-                                    </tr> -->
+									<tr>
+										<td><label>Nieuwsbrief:</label>
+											<select name="geslacht" width="180" style="width: 180px; margin-left: 13px;">
+											<?php
+												if($array["WilMail"] == "0") {
+													?>
+														<option value="M">Niet ontvangen</option>
+														<option value="V">Wel ontvangen</option>
+													<?php
+												} else if($array["WilMail"] == "1") {
+													?>
+														<option value="V">Wel ontvangen</option>
+														<option value="M">Niet ontvangen</option>
+													<?php
+												} else {
+													?>
+														<option value="A">Selecteer een optie...</option>
+														<option value="M">Wel ontvangen</option>
+														<option value="V">Niet ontvangen</option>
+													<?php
+												}
+											?>
+											</select>
+										
+											<select name="provincielist" width="180" style="width: 180px;">
+												<option value="">Selecteer uw provincie...</option>
+												<option value="*">Alle provincies</option>
+												<option value="Noord-Holland">Noord-Holland</option>
+												<option value="Zuid-Holland">Zuid-Holland</option>
+												<option value="Utrecht">Utrecht</option>
+												<option value="Flevoland">Flevoland</option>
+												<option value="Groningen">Groningen</option>
+												<option value="Friesland">Friesland</option>
+												<option value="Drenthe">Drenthe</option>
+												<option value="Overijsel">Overijssel</option>
+												<option value="Gelderland">Gelderland</option>
+												<option value="Noord-Brabant">Noord-Brabant</option>
+												<option value="Limburg">Limburg</option>
+												<option value="Zeeland">Zeeland</option>
+											</select>
+										</td>
+									</tr>
+                                    <tr>
+                                        <td><label>Vrije tekst:</label><textarea name="bericht" cols=25 rows="6" maxlength="750"  placeholder="<?php if(isset($array["Vrije Tekst"])) { print($array["Vrije Tekst"]); } else { print("Uw bericht..."); } ?>"></textarea></td>
+                                    </tr>
                                     <tr>
                                         <td><input name="update" type="submit" value="Update uw account" class="button <?php print $geslacht ?>_button" /></td>
                                     </tr>
